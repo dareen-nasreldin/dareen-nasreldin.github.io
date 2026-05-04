@@ -269,6 +269,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 }
 
 .proj:hover .proj-name { color: var(--accent); }
+.proj:hover .proj-arrow { color: var(--accent); transform: translate(3px, -3px); }
+
+.proj-arrow {
+  font-size: 16px;
+  color: var(--fg3);
+  transition: all 0.15s;
+  padding-top: 28px;
+}
 
 .proj-img {
   width: 100%;
@@ -347,9 +355,9 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 }
 
 .resume-company {
-  font-size: 13px;
-  color: var(--fg2);
-  font-weight: 400;
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--accent);
   margin-bottom: 8px;
 }
 
@@ -370,34 +378,31 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 .contact-label {
   font-family: var(--fm);
   font-size: 11px;
-  color: var(--fg3);
+  color: #555;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 16px;
-  text-align: center;
 }
 
 .contact-h {
-  font-size: 32px;
+  font-size: clamp(36px, 6vw, 52px);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  text-align: center;
+  letter-spacing: -0.03em;
+  color: #fff;
   margin-bottom: 12px;
 }
 
 .contact-sub {
   font-size: 15px;
-  color: var(--fg2);
-  text-align: center;
+  color: #666;
   max-width: 320px;
-  margin: 0 auto 40px;
+  margin: 0 0 40px;
   font-weight: 300;
 }
 
 .contact-rows {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #222;
   max-width: 480px;
-  margin: 0 auto;
 }
 
 .contact-row {
@@ -405,18 +410,19 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #222;
   text-decoration: none;
   color: inherit;
-  transition: opacity 0.15s;
+  transition: all 0.15s;
 }
 
-.contact-row:hover { opacity: 0.6; }
+.contact-row:hover { padding-left: 6px; opacity: 1; }
+.contact-row:hover .ca { color: var(--accent); transform: translate(3px, -3px); }
 
 .cp {
   font-family: var(--fm);
   font-size: 11px;
-  color: var(--fg3);
+  color: #444;
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -425,9 +431,10 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 .ch {
   font-size: 15px;
   font-weight: 500;
+  color: #fff;
 }
 
-.ca { font-size: 16px; color: var(--fg3); }
+.ca { font-size: 16px; color: #333; transition: all 0.15s; }
 
 footer {
   padding: 40px;
@@ -445,6 +452,7 @@ footer {
   <div class="logo">Dareen<span>.</span></div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -491,7 +499,7 @@ footer {
 </section>
 
 <hr>
-<section>
+<section id="skills">
   <div class="wrap">
     <h2>Skills</h2>
     <div class="skills-grid">
@@ -546,44 +554,53 @@ footer {
     <div class="proj-list">
 
       <a href="https://github.com/ryabalta/Remi" target="_blank" class="proj">
-        <img class="proj-img" src="https://raw.githubusercontent.com/ryabalta/Remi/main/README_IMAGE.png" alt="Remi AI Preview">
-        <div>
-          <div class="proj-idx">01</div>
-          <div class="proj-name">Remi – AI Memory Assistant</div>
-          <div class="proj-desc">An interactive Python application that enhances memory and focus through conversational, voice-based exercises. Built using real-time speech recognition and adaptive difficulty features.</div>
-          <div class="proj-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Speech Recognition</span>
-            <span class="stack-tag">AI/ML</span>
+        <img class="proj-img" src="https://raw.githubusercontent.com/ryabalta/Remi/main/README_IMAGE.png" alt="Remi AI Preview" onerror="this.style.display='none'">
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">01</div>
+            <div class="proj-name">Remi – AI Memory Assistant</div>
+            <div class="proj-desc">An interactive Python application that enhances memory and focus through conversational, voice-based exercises. Built using real-time speech recognition and adaptive difficulty features.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">Speech Recognition</span>
+              <span class="stack-tag">AI/ML</span>
+            </div>
           </div>
+          <div class="proj-arrow">↗</div>
         </div>
       </a>
 
       <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="proj">
-        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/linkedin_notion_tool/main/README_IMAGE.png" alt="Notion Automation Preview">
-        <div>
-          <div class="proj-idx">02</div>
-          <div class="proj-name">LinkedIn-to-Notion Automation Pipeline</div>
-          <div class="proj-desc">Engineered a Python automation suite to aggregate job postings and sync them securely to a Notion database via RESTful APIs with resilient error handling.</div>
-          <div class="proj-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">REST APIs</span>
-            <span class="stack-tag">Automation</span>
+        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/linkedin_notion_tool/main/README_IMAGE.png" alt="Notion Automation Preview" onerror="this.style.display='none'">
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">02</div>
+            <div class="proj-name">LinkedIn-to-Notion Automation Pipeline</div>
+            <div class="proj-desc">Engineered a Python automation suite to aggregate job postings and sync them securely to a Notion database via RESTful APIs with resilient error handling.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">REST APIs</span>
+              <span class="stack-tag">Automation</span>
+            </div>
           </div>
+          <div class="proj-arrow">↗</div>
         </div>
       </a>
 
       <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj">
-        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/flappy-FPGA-verilog/main/README_IMAGE.png" alt="FPGA Game Preview">
-        <div>
-          <div class="proj-idx">03</div>
-          <div class="proj-name">Flappy Bird FPGA Game Engine</div>
-          <div class="proj-desc">Engineered a deterministic game engine from scratch using Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU to achieve microsecond-latency response times with custom VGA/PS2 drivers.</div>
-          <div class="proj-stack">
-            <span class="stack-tag">Verilog</span>
-            <span class="stack-tag">FPGA</span>
-            <span class="stack-tag">Hardware Logic</span>
+        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/flappy-FPGA-verilog/main/README_IMAGE.png" alt="FPGA Game Preview" onerror="this.style.display='none'">
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">03</div>
+            <div class="proj-name">Flappy Bird FPGA Game Engine</div>
+            <div class="proj-desc">Engineered a deterministic game engine from scratch using Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU to achieve microsecond-latency response times with custom VGA/PS2 drivers.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">Verilog</span>
+              <span class="stack-tag">FPGA</span>
+              <span class="stack-tag">Hardware Logic</span>
+            </div>
           </div>
+          <div class="proj-arrow">↗</div>
         </div>
       </a>
 
@@ -635,7 +652,7 @@ footer {
 </section>
 
 <hr>
-<section id="contact">
+<section id="contact" style="background: var(--fg);">
   <div class="wrap">
     <div class="contact-label">Contact</div>
     <div class="contact-h">Let's connect.</div>
@@ -666,10 +683,9 @@ footer {
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    © 2026 Dareen M. Nasreldin. 
-  </div>
+<footer style="background: var(--fg); border-top: 1px solid #1a1a1a; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;">
+  <span style="font-family: var(--fm); font-size: 11px; color: #333;">© 2026 Dareen M. Nasreldin</span>
+  <span style="font-family: var(--fm); font-size: 11px; color: #333;">Washington D.C. / Toronto</span>
 </footer>
 
 </body>
