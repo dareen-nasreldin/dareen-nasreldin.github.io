@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dareen M. Nasreldin — Computer Engineering @ UofT</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --f: 'Geist', sans-serif;
+  --fm: 'Geist Mono', monospace;
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --fg: #111110;
+  --fg2: #6f6e6a;
+  --fg3: #a8a7a3;
+  --border: #e4e4e0;
+  --accent: #7F77DD;
+  --accent-bg: #EEEDFE;
+  --accent-text: #3C3489;
+  --nav: 60px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--f);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav);
+  background: rgba(247,247,245,0.95);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--fm);
+  font-size: 13px;
+  color: var(--fg2);
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--f);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--fg2);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: var(--fg); }
+
+@media (max-width: 600px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+}
+
+section { padding: 88px 0 72px; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+@media (max-width: 600px) {
+  .wrap { padding: 0 20px; }
+  section { padding: 64px 0 52px; }
+}
+
+.label {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: var(--f);
+  font-size: clamp(44px, 7vw, 68px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin-bottom: 24px;
+}
+
+h1 .accent { color: var(--accent); }
+
+h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--fg2);
+  max-width: 460px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  font-family: var(--f);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+
+.btn-solid {
+  background: var(--fg);
+  color: var(--bg);
+  border: 1px solid var(--fg);
+}
+.btn-solid:hover { background: #333; border-color: #333; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--fg2);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--fg2); color: var(--fg); }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: var(--nav);
+}
+
+.about-body {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .about-body { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.about-body p {
+  font-size: 15px;
+  color: var(--fg2);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+
+.about-facts { display: flex; flex-direction: column; }
+
+.fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+
+.fact:first-child { border-top: 1px solid var(--border); }
+
+.fact-key {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.fact-val {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  text-align: right;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 500px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .skill-block { border-right: none !important; }
+}
+
+.skill-block {
+  padding: 24px 28px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.skill-block:nth-child(2n) { border-right: none; }
+.skill-block:nth-last-child(-n+2) { border-bottom: none; }
+
+.skill-head {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  margin-bottom: 14px;
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+  font-family: var(--fm);
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--bg);
+  color: var(--fg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.tag.hi {
+  background: var(--accent-bg);
+  color: var(--accent-text);
+  border-color: transparent;
+}
+
+.proj-list { display: flex; flex-direction: column; gap: 32px; padding-top: 16px; }
+
+.proj {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+}
+
+.proj:hover .proj-name { color: var(--accent); }
+
+.proj-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #e4e4e0;
+  border: 1px solid var(--border);
+}
+
+.proj-idx {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+  margin-bottom: 8px;
+}
+
+.proj-name {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  transition: color 0.15s;
+}
+
+.proj-desc {
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+
+.proj-stack { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.stack-tag {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.resume-block { margin-bottom: 52px; }
+
+.resume-block-head {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.resume-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 24px;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 500px) {
+  .resume-row { grid-template-columns: 1fr; gap: 8px; }
+  .resume-date { text-align: left !important; }
+}
+
+.resume-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+
+.resume-company {
+  font-size: 13px;
+  color: var(--fg2);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.resume-note {
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.resume-date {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--fg3);
+  text-align: right;
+}
+
+.contact-label {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.contact-h {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.contact-sub {
+  font-size: 15px;
+  color: var(--fg2);
+  text-align: center;
+  max-width: 320px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+
+.contact-rows {
+  border-top: 1px solid var(--border);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s;
+}
+
+.contact-row:hover { opacity: 0.6; }
+
+.cp {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ch {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ca { font-size: 16px; color: var(--fg3); }
+
+footer {
+  padding: 40px;
+  text-align: center;
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--fg3);
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Dareen<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="label">Computer Engineering Intern</div>
+    <h1>Building robust software <span class="accent">&amp;</span> physical systems.</h1>
+    <p class="hero-desc">I am a Computer Engineering student at the University of Toronto specializing in B2B Integrations, API Architecture, and Real-Time Systems.</p>
+    <div class="cta-row">
+      <a href="#work" class="btn btn-solid">View projects</a>
+      <a href="#contact" class="btn btn-outline">Contact me</a>
+    </div>
+  </div>
+</section>
+
+<hr>
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <div class="about-body">
+      <div>
+        <p>I enjoy the challenge of making complex systems talk to each other. Whether it’s building high-throughput data pipelines for Neurotech or architecting bare-metal game engines on FPGAs, I’m driven by performance and system reliability.</p>
+        <p>Currently, I’m focusing on the intersection of AI, Cybersecurity, and B2B Integrations, with a strong moral compass for engineering in civilian and commercial sectors.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact">
+          <span class="fact-key">Location</span>
+          <span class="fact-val">Washington D.C. Area / Toronto</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Education</span>
+          <span class="fact-val">UofT ECE</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Focus</span>
+          <span class="fact-val">Software / Hardware Integration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+<section>
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-head">Languages</div>
+        <div class="tags">
+          <span class="tag hi">C++</span>
+          <span class="tag hi">Python</span>
+          <span class="tag hi">Java</span>
+          <span class="tag">Verilog</span>
+          <span class="tag">SQL</span>
+          <span class="tag">C</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-head">Technologies & Tools</div>
+        <div class="tags">
+          <span class="tag hi">REST APIs</span>
+          <span class="tag">Git/GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Docker</span>
+          <span class="tag">libcurl</span>
+          <span class="tag">Pandas/NumPy</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-head">Hardware & Embedded</div>
+        <div class="tags">
+          <span class="tag hi">FPGA (Altera DE1-SoC)</span>
+          <span class="tag">ModelSim</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Sensors (sEMG, IMU)</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-head">Concepts</div>
+        <div class="tags">
+          <span class="tag hi">Object-Oriented Design</span>
+          <span class="tag">Agile/Scrum</span>
+          <span class="tag">Data Pipelines</span>
+          <span class="tag">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+<section id="work">
+  <div class="wrap">
+    <h2>Selected Projects</h2>
+    <div class="proj-list">
+
+      <a href="https://github.com/ryabalta/Remi" target="_blank" class="proj">
+        <img class="proj-img" src="https://raw.githubusercontent.com/ryabalta/Remi/main/README_IMAGE.png" alt="Remi AI Preview">
+        <div>
+          <div class="proj-idx">01</div>
+          <div class="proj-name">Remi – AI Memory Assistant</div>
+          <div class="proj-desc">An interactive Python application that enhances memory and focus through conversational, voice-based exercises. Built using real-time speech recognition and adaptive difficulty features.</div>
+          <div class="proj-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Speech Recognition</span>
+            <span class="stack-tag">AI/ML</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="proj">
+        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/linkedin_notion_tool/main/README_IMAGE.png" alt="Notion Automation Preview">
+        <div>
+          <div class="proj-idx">02</div>
+          <div class="proj-name">LinkedIn-to-Notion Automation Pipeline</div>
+          <div class="proj-desc">Engineered a Python automation suite to aggregate job postings and sync them securely to a Notion database via RESTful APIs with resilient error handling.</div>
+          <div class="proj-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">REST APIs</span>
+            <span class="stack-tag">Automation</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj">
+        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/flappy-FPGA-verilog/main/README_IMAGE.png" alt="FPGA Game Preview">
+        <div>
+          <div class="proj-idx">03</div>
+          <div class="proj-name">Flappy Bird FPGA Game Engine</div>
+          <div class="proj-desc">Engineered a deterministic game engine from scratch using Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU to achieve microsecond-latency response times with custom VGA/PS2 drivers.</div>
+          <div class="proj-stack">
+            <span class="stack-tag">Verilog</span>
+            <span class="stack-tag">FPGA</span>
+            <span class="stack-tag">Hardware Logic</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<hr>
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+
+    <div class="resume-block">
+      <div class="resume-block-head">Technical & Research</div>
+      
+      <div class="resume-row">
+        <div>
+          <div class="resume-title">Software Subsystem Member</div>
+          <div class="resume-company">NeurotechUofT</div>
+          <div class="resume-note">Integrated surface EMG (sEMG) sensors with a Raspberry Pi 5 to control a motorized rehabilitative exoskeleton (NeuronMove V2). Designed and debugged closed-loop control software in Python and C++ to coordinate complex motor arrays. Processed EEG data streams and implemented SVM/Random Forest models achieving a 70% accuracy baseline.</div>
+        </div>
+        <div class="resume-date">Sep 2024 — Present</div>
+      </div>
+
+      <div class="resume-row">
+        <div>
+          <div class="resume-title">Team Lead - Bilaminar Skin Flap Biomodel (ESP II)</div>
+          <div class="resume-company">University of Toronto & Sunnybrook Hospital</div>
+          <div class="resume-note">Led a cross-functional engineering team to design and prototype a surgical biomodel for Dr. Oleh Antonyshyn. Managed the end-to-end workflow, conducting iterative concept development, client feedback sessions, and tensile testing to validate material properties.</div>
+        </div>
+        <div class="resume-date">Jan 2025 — Apr 2025</div>
+      </div>
+
+    </div>
+
+    <div class="resume-block">
+      <div class="resume-block-head">Education</div>
+      <div class="resume-row">
+        <div>
+          <div class="resume-title">BASc Computer Engineering</div>
+          <div class="resume-company">University of Toronto</div>
+          <div class="resume-note">Minor in Artificial Intelligence. Certificates in Cybersecurity and Engineering Business. Awarded $40,000 Engineering Merit Scholarship.</div>
+        </div>
+        <div class="resume-date">Expected 2028</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-label">Contact</div>
+    <div class="contact-h">Let's connect.</div>
+    <p class="contact-sub">Open to 2026 internships in software engineering, API development, and hardware integration.</p>
+    <div class="contact-rows">
+      <a class="contact-row" href="mailto:dareennasreldin@gmail.com">
+        <div>
+          <div class="cp">Email</div>
+          <div class="ch">dareennasreldin@gmail.com</div>
+        </div>
+        <div class="ca">↗</div>
+      </a>
+      <a class="contact-row" href="https://linkedin.com/in/dareen-nasreldin" target="_blank">
+        <div>
+          <div class="cp">LinkedIn</div>
+          <div class="ch">/in/dareen-nasreldin</div>
+        </div>
+        <div class="ca">↗</div>
+      </a>
+      <a class="contact-row" href="https://github.com/dareen-nasreldin" target="_blank">
+        <div>
+          <div class="cp">GitHub</div>
+          <div class="ch">github.com/dareen-nasreldin</div>
+        </div>
+        <div class="ca">↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 Dareen M. Nasreldin. 
+  </div>
+</footer>
+
+</body>
+</html>
