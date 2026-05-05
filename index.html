@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dareen M. Nasreldin — Computer Engineering @ UofT</title>
+<meta name="description" content="Dareen M. Nasreldin - Computer Engineering student at UofT specializing in B2B Integrations, API Architecture, and Real-Time Systems.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dareen-nasreldin.github.io/">
+<meta property="og:title" content="Dareen M. Nasreldin — Portfolio">
+<meta property="og:description" content="Computer Engineering student at UofT specializing in B2B Integrations, API Architecture, and Real-Time Systems.">
+<meta property="og:image" content="https://dareen-nasreldin.github.io/preview.png">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,6 +30,9 @@
   --nav: 60px;
 }
 
+/* Hide elements initially to prevent Flash of Unstyled Content (FOUC) before GSAP loads */
+.gsap-reveal { visibility: hidden; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -32,12 +42,15 @@ body {
   font-size: 15px;
   line-height: 1.6;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0;
   height: var(--nav);
-  background: rgba(247,247,245,0.95);
+  background: rgba(247,247,245,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px;
@@ -129,9 +142,10 @@ h2 {
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.15s;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
   display: inline-block;
   letter-spacing: 0.01em;
+  will-change: transform; /* Helps GSAP perform better */
 }
 
 .btn-solid {
@@ -247,6 +261,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   color: var(--fg2);
   border: 1px solid var(--border);
   border-radius: 4px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--fg2);
 }
 
 .tag.hi {
@@ -278,13 +298,22 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   padding-top: 28px;
 }
 
-.proj-img {
+/* Image container for parallax */
+.proj-img-wrap {
   width: 100%;
   height: 240px;
-  object-fit: cover;
   border-radius: 8px;
-  background-color: #e4e4e0;
   border: 1px solid var(--border);
+  overflow: hidden; /* Crucial for parallax hiding edges */
+  background-color: #e4e4e0;
+}
+
+.proj-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Scale up slightly to give parallax room to move without showing edges */
+  transform: scale(1.15); 
 }
 
 .proj-idx {
@@ -378,7 +407,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 .contact-label {
   font-family: var(--fm);
   font-size: 11px;
-  color: #555;
+  color: #a8a7a3;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -388,20 +417,20 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   font-size: clamp(36px, 6vw, 52px);
   font-weight: 500;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 12px;
 }
 
 .contact-sub {
   font-size: 15px;
-  color: #666;
+  color: #a8a7a3;
   max-width: 320px;
   margin: 0 0 40px;
   font-weight: 300;
 }
 
 .contact-rows {
-  border-top: 1px solid #222;
+  border-top: 1px solid #333333;
   max-width: 480px;
 }
 
@@ -410,10 +439,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #333333;
   text-decoration: none;
   color: inherit;
-  transition: all 0.15s;
+  transition: opacity 0.15s;
+  will-change: transform;
 }
 
 .contact-row:hover { padding-left: 6px; opacity: 1; }
@@ -422,7 +452,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 .cp {
   font-family: var(--fm);
   font-size: 11px;
-  color: #444;
+  color: #a8a7a3;
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -431,10 +461,10 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 .ch {
   font-size: 15px;
   font-weight: 500;
-  color: #fff;
+  color: #ffffff;
 }
 
-.ca { font-size: 16px; color: #333; transition: all 0.15s; }
+.ca { font-size: 16px; color: #a8a7a3; transition: all 0.15s; }
 
 footer {
   padding: 40px;
@@ -443,7 +473,6 @@ footer {
   font-size: 11px;
   color: var(--fg3);
 }
-
 </style>
 </head>
 <body>
@@ -461,12 +490,13 @@ footer {
 
 <section id="hero">
   <div class="wrap">
-    <div class="label">Computer Engineering Intern</div>
-    <h1>Building robust software <span class="accent">&amp;</span> physical systems.</h1>
-    <p class="hero-desc">I am a Computer Engineering student at the University of Toronto specializing in B2B Integrations, API Architecture, and Real-Time Systems.</p>
-    <div class="cta-row">
+    <div class="label gsap-hero">Computer Engineering Student</div>
+    <h1 class="gsap-hero">Building robust software <span class="accent">&amp;</span> physical systems.</h1>
+    <p class="hero-desc gsap-hero">I am a Computer Engineering student at the University of Toronto specializing in B2B Integrations, API Architecture, and Real-Time Systems.</p>
+    <div class="cta-row gsap-hero">
       <a href="#work" class="btn btn-solid">View projects</a>
       <a href="#contact" class="btn btn-outline">Contact me</a>
+      <a href="resume.pdf" target="_blank" class="btn btn-outline">Resume PDF ↓</a>
     </div>
   </div>
 </section>
@@ -474,11 +504,11 @@ footer {
 <hr>
 <section id="about">
   <div class="wrap">
-    <h2>About</h2>
-    <div class="about-body">
+    <h2 class="gsap-fade-up">About</h2>
+    <div class="about-body gsap-fade-up">
       <div>
-        <p>I enjoy the challenge of making complex systems talk to each other. Whether it’s building high-throughput data pipelines for Neurotech or architecting bare-metal game engines on FPGAs, I’m driven by performance and system reliability.</p>
-        <p>Currently, I’m focusing on the intersection of AI, Cybersecurity, and B2B Integrations, with a strong moral compass for engineering in civilian and commercial sectors.</p>
+        <p>I am a builder who thrives at the intersection of hardware and software. Whether I’m designing closed-loop control algorithms for rehabilitative exoskeletons or architecting bare-metal Verilog game engines on FPGAs, I am obsessed with understanding how things work under the hood and optimizing them for peak performance.</p>
+        <p>Right now, I am focused on leveraging AI, scalable data pipelines, and robust API architectures to solve complex enterprise challenges. I love taking on ambitious technical problems—especially those that require bridging the gap between physical systems and high-throughput backend infrastructure.</p>
       </div>
       <div class="about-facts">
         <div class="fact">
@@ -501,9 +531,9 @@ footer {
 <hr>
 <section id="skills">
   <div class="wrap">
-    <h2>Skills</h2>
+    <h2 class="gsap-fade-up">Skills</h2>
     <div class="skills-grid">
-      <div class="skill-block">
+      <div class="skill-block gsap-stagger-card">
         <div class="skill-head">Languages</div>
         <div class="tags">
           <span class="tag hi">C++</span>
@@ -514,7 +544,7 @@ footer {
           <span class="tag">C</span>
         </div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block gsap-stagger-card">
         <div class="skill-head">Technologies & Tools</div>
         <div class="tags">
           <span class="tag hi">REST APIs</span>
@@ -525,7 +555,7 @@ footer {
           <span class="tag">Pandas/NumPy</span>
         </div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block gsap-stagger-card">
         <div class="skill-head">Hardware & Embedded</div>
         <div class="tags">
           <span class="tag hi">FPGA (Altera DE1-SoC)</span>
@@ -534,7 +564,7 @@ footer {
           <span class="tag">Sensors (sEMG, IMU)</span>
         </div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block gsap-stagger-card">
         <div class="skill-head">Concepts</div>
         <div class="tags">
           <span class="tag hi">Object-Oriented Design</span>
@@ -550,28 +580,32 @@ footer {
 <hr>
 <section id="work">
   <div class="wrap">
-    <h2>Selected Projects</h2>
+    <h2 class="gsap-fade-up">Selected Projects</h2>
     <div class="proj-list">
 
-      <a href="https://github.com/ryabalta/Remi" target="_blank" class="proj">
-        <img class="proj-img" src="https://raw.githubusercontent.com/ryabalta/Remi/main/README_IMAGE.png" alt="Remi AI Preview" onerror="this.style.display='none'">
+      <a href="https://github.com/dareen-nasreldin" target="_blank" class="proj gsap-proj">
+        <div class="proj-img-wrap">
+            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/ECE297-GIS-Map/main/README_IMAGE.png" alt="GIS Mapping Engine Preview" onerror="this.style.display='none'" loading="lazy">
+        </div>
         <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
           <div>
             <div class="proj-idx">01</div>
-            <div class="proj-name">Remi – AI Memory Assistant</div>
-            <div class="proj-desc">An interactive Python application that enhances memory and focus through conversational, voice-based exercises. Built using real-time speech recognition and adaptive difficulty features.</div>
+            <div class="proj-name">High-Performance GIS Mapping & Routing Engine</div>
+            <div class="proj-desc">Architected a city-scale mapping system in C++ optimized for sub-second pathfinding across 100,000+ nodes using Dijkstra and A* algorithms. Integrated OSM/streetsdatabase APIs using libcurl.</div>
             <div class="proj-stack">
-              <span class="stack-tag">Python</span>
-              <span class="stack-tag">Speech Recognition</span>
-              <span class="stack-tag">AI/ML</span>
+              <span class="stack-tag">C++</span>
+              <span class="stack-tag">libcurl</span>
+              <span class="stack-tag">Algorithms</span>
             </div>
           </div>
           <div class="proj-arrow">↗</div>
         </div>
       </a>
 
-      <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="proj">
-        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/linkedin_notion_tool/main/README_IMAGE.png" alt="Notion Automation Preview" onerror="this.style.display='none'">
+      <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="proj gsap-proj">
+        <div class="proj-img-wrap">
+            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/linkedin_notion_tool/main/README_IMAGE.png" alt="Notion Automation Preview" onerror="this.style.display='none'" loading="lazy">
+        </div>
         <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
           <div>
             <div class="proj-idx">02</div>
@@ -587,8 +621,10 @@ footer {
         </div>
       </a>
 
-      <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj">
-        <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/flappy-FPGA-verilog/main/README_IMAGE.png" alt="FPGA Game Preview" onerror="this.style.display='none'">
+      <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj gsap-proj">
+        <div class="proj-img-wrap">
+            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/flappy-FPGA-verilog/main/README_IMAGE.png" alt="FPGA Game Preview" onerror="this.style.display='none'" loading="lazy">
+        </div>
         <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
           <div>
             <div class="proj-idx">03</div>
@@ -611,12 +647,21 @@ footer {
 <hr>
 <section id="experience">
   <div class="wrap">
-    <h2>Experience</h2>
+    <h2 class="gsap-fade-up">Experience</h2>
 
     <div class="resume-block">
-      <div class="resume-block-head">Technical & Research</div>
+      <div class="resume-block-head gsap-fade-up">Technical & Research</div>
       
-      <div class="resume-row">
+      <div class="resume-row gsap-resume-row">
+        <div>
+          <div class="resume-title">Incoming Software Engineering Intern</div>
+          <div class="resume-company">Exiger</div>
+          <div class="resume-note">Incoming intern joining the engineering team to contribute to AI-powered supply chain and risk management platforms, leveraging my background in B2B integrations and API architecture.</div>
+        </div>
+        <div class="resume-date">Summer 2026</div>
+      </div>
+
+      <div class="resume-row gsap-resume-row">
         <div>
           <div class="resume-title">Software Subsystem Member</div>
           <div class="resume-company">NeurotechUofT</div>
@@ -625,7 +670,7 @@ footer {
         <div class="resume-date">Sep 2024 — Present</div>
       </div>
 
-      <div class="resume-row">
+      <div class="resume-row gsap-resume-row">
         <div>
           <div class="resume-title">Team Lead - Bilaminar Skin Flap Biomodel (ESP II)</div>
           <div class="resume-company">University of Toronto & Sunnybrook Hospital</div>
@@ -637,8 +682,8 @@ footer {
     </div>
 
     <div class="resume-block">
-      <div class="resume-block-head">Education</div>
-      <div class="resume-row">
+      <div class="resume-block-head gsap-fade-up">Education</div>
+      <div class="resume-row gsap-resume-row">
         <div>
           <div class="resume-title">BASc Computer Engineering</div>
           <div class="resume-company">University of Toronto</div>
@@ -652,6 +697,7 @@ footer {
 </section>
 
 <hr>
+<!-- The contact section is completely static on scroll, but magnetic hover effects stay -->
 <section id="contact" style="background: var(--fg);">
   <div class="wrap">
     <div class="contact-label">Contact</div>
@@ -683,10 +729,123 @@ footer {
   </div>
 </section>
 
-<footer style="background: var(--fg); border-top: 1px solid #1a1a1a; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;">
-  <span style="font-family: var(--fm); font-size: 11px; color: #333;">© 2026 Dareen M. Nasreldin</span>
-  <span style="font-family: var(--fm); font-size: 11px; color: #333;">Washington D.C. / Toronto</span>
+<footer style="background: var(--fg); border-top: 1px solid #1a1a1a; padding: 40px 40px 80px; display: flex; justify-content: space-between; align-items: center;">
+  <span style="font-family: var(--fm); font-size: 11px; color: #888;">© 2026 Dareen M. Nasreldin</span>
+  <span style="font-family: var(--fm); font-size: 11px; color: #888;">Washington D.C. / Toronto</span>
 </footer>
+
+<!-- GSAP Core & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+  // Register the plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Unhide everything before animating (prevents ugly flashing on load)
+  // Removed .gsap-contact-row since it's no longer used
+  gsap.set(".gsap-hero, .gsap-fade-up, .gsap-stagger-card, .gsap-proj, .gsap-resume-row", { visibility: "visible" });
+
+  // 1. Hero Load Sequence (Timeline)
+  const heroTl = gsap.timeline();
+  heroTl.from(".gsap-hero:nth-child(1)", { y: 20, opacity: 0, duration: 0.6, delay: 0.2 })
+        .from(".gsap-hero:nth-child(2)", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
+        .from(".gsap-hero:nth-child(3)", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5")
+        .from(".cta-row a", { y: 15, opacity: 0, duration: 0.5, stagger: 0.1 }, "-=0.4");
+
+  // 2. Fade Up Elements on Scroll (Headers, About text, etc)
+  gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+    gsap.from(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: "top 95%", 
+        toggleActions: "play none none none" 
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+  });
+
+  // 3. Stagger Cards on Scroll (Skills)
+  gsap.from(".gsap-stagger-card", {
+    scrollTrigger: {
+      trigger: ".skills-grid",
+      start: "top 95%"
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out"
+  });
+
+  // 4. Project Cards & Image Parallax on Scroll
+  gsap.utils.toArray('.gsap-proj').forEach(proj => {
+    // Fade the project card in
+    gsap.from(proj, {
+      scrollTrigger: {
+        trigger: proj,
+        start: "top 95%"
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out"
+    });
+
+    // Parallax the image inside the card
+    const img = proj.querySelector('.proj-img');
+    if (img) {
+      gsap.to(img, {
+        yPercent: 15, // Moves the image down by 15% as you scroll past
+        ease: "none",
+        scrollTrigger: {
+          trigger: proj,
+          start: "top bottom", 
+          end: "bottom top",
+          scrub: true // "Scrub" makes the animation tied exactly to the scrollbar
+        }
+      });
+    }
+  });
+
+  // 5. Experience Rows Stagger
+  gsap.utils.toArray('.resume-block').forEach(block => {
+    gsap.from(block.querySelectorAll('.gsap-resume-row'), {
+      scrollTrigger: {
+        trigger: block,
+        start: "top 95%"
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: "power2.out"
+    });
+  });
+
+  // 6. MAGNETIC HOVER EFFECT (For CTA buttons and Contact links)
+  const magnets = document.querySelectorAll('.btn, .contact-row');
+  
+  magnets.forEach(magnet => {
+    magnet.addEventListener('mousemove', (e) => {
+      const rect = magnet.getBoundingClientRect();
+      // Calculate cursor position relative to the center of the element
+      const x = (e.clientX - rect.left) - (rect.width / 2);
+      const y = (e.clientY - rect.top) - (rect.height / 2);
+      
+      // Move element towards cursor (0.2 dictates the magnetic "strength")
+      gsap.to(magnet, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
+    });
+    
+    magnet.addEventListener('mouseleave', () => {
+      // Snap back to 0,0 with a satisfying elastic bounce
+      gsap.to(magnet, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
+    });
+  });
+</script>
 
 </body>
 </html>
