@@ -12,525 +12,23 @@
 <meta property="og:description" content="Computer Engineering student at UofT specializing in B2B Integrations, API Architecture, and Real-Time Systems.">
 <meta property="og:image" content="https://dareen-nasreldin.github.io/preview.png">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --f: 'Geist', sans-serif;
-  --fm: 'Geist Mono', monospace;
-  --bg: #f7f7f5;
-  --surface: #ffffff;
-  --fg: #111110;
-  --fg2: #6f6e6a;
-  --fg3: #a8a7a3;
-  --border: #e4e4e0;
-  --accent: #7F77DD;
-  --accent-bg: #EEEDFE;
-  --accent-text: #3C3489;
-  --nav: 60px;
-}
-
-/* Hide elements initially to prevent Flash of Unstyled Content (FOUC) before GSAP loads */
-.gsap-reveal { visibility: hidden; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--f);
-  background: var(--bg);
-  color: var(--fg);
-  font-size: 15px;
-  line-height: 1.6;
-  font-weight: 400;
-  overflow-x: hidden;
-}
-
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--nav);
-  background: rgba(247,247,245,0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px;
-  z-index: 100;
-}
-
-.logo {
-  font-family: var(--fm);
-  font-size: 13px;
-  color: var(--fg2);
-}
-
-.logo span { color: var(--accent); }
-
-.nav-links {
-  display: flex; gap: 28px; list-style: none;
-}
-
-.nav-links a {
-  font-family: var(--f);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--fg2);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.nav-links a:hover { color: var(--fg); }
-
-@media (max-width: 600px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-}
-
-section { padding: 88px 0 72px; }
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 40px; }
-
-@media (max-width: 600px) {
-  .wrap { padding: 0 20px; }
-  section { padding: 64px 0 52px; }
-}
-
-.label {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--fg3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-h1 {
-  font-family: var(--f);
-  font-size: clamp(44px, 7vw, 68px);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--fg);
-  margin-bottom: 24px;
-}
-
-h1 .accent { color: var(--accent); }
-
-h2 {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--fg);
-  margin-bottom: 32px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.hero-desc {
-  font-size: 16px;
-  color: var(--fg2);
-  max-width: 460px;
-  line-height: 1.75;
-  margin-bottom: 40px;
-  font-weight: 300;
-}
-
-.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-
-.btn {
-  font-family: var(--f);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 10px 22px;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
-  display: inline-block;
-  letter-spacing: 0.01em;
-  will-change: transform; /* Helps GSAP perform better */
-}
-
-.btn-solid {
-  background: var(--fg);
-  color: var(--bg);
-  border: 1px solid var(--fg);
-}
-.btn-solid:hover { background: #333; border-color: #333; }
-
-.btn-outline {
-  background: transparent;
-  color: var(--fg2);
-  border: 1px solid var(--border);
-}
-.btn-outline:hover { border-color: var(--fg2); color: var(--fg); }
-
-/* --- POLAROID STYLING --- */
-.polaroid {
-  position: absolute;
-  right: -80px; 
-  top: 20px;
-  width: 220px;
-  padding: 12px 12px 45px 12px;
-  background: #ffffff;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 5px 15px rgba(0,0,0,0.04);
-  border: 1px solid var(--border);
-  transform: rotate(6deg);
-  z-index: 10;
-  will-change: transform;
-}
-
-.polaroid img {
-  width: 100%;
-  height: auto;
-  display: block;
-  background-color: var(--border);
-  filter: contrast(1.05) saturate(1.05); /* Slight filter to make it pop */
-}
-
-.polaroid-caption {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Handwritten vibe */
-  font-size: 14px;
-  color: #333;
-  text-align: center;
-  position: absolute;
-  bottom: 14px;
-  width: calc(100% - 24px);
-  transform: rotate(-2deg); /* Counter-rotate the text slightly for realism */
-}
-
-@media (max-width: 950px) {
-  .polaroid {
-    display: none; /* Hide on smaller screens to prevent overlapping text */
-  }
-}
-/* ------------------------ */
-
-hr { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-#hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding-top: var(--nav);
-}
-
-.about-body {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 60px;
-  align-items: start;
-}
-
-@media (max-width: 600px) {
-  .about-body { grid-template-columns: 1fr; gap: 32px; }
-}
-
-.about-body p {
-  font-size: 15px;
-  color: var(--fg2);
-  line-height: 1.8;
-  font-weight: 300;
-  margin-bottom: 14px;
-}
-
-.about-facts { display: flex; flex-direction: column; }
-
-.fact {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  gap: 12px;
-}
-
-.fact:first-child { border-top: 1px solid var(--border); }
-
-.fact-key {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--fg3);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.fact-val {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--fg);
-  text-align: right;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-@media (max-width: 500px) {
-  .skills-grid { grid-template-columns: 1fr; }
-  .skill-block { border-right: none !important; }
-}
-
-.skill-block {
-  padding: 24px 28px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-
-.skill-block:nth-child(2n) { border-right: none; }
-.skill-block:nth-last-child(-n+2) { border-bottom: none; }
-
-.skill-head {
-  font-family: var(--fm);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg3);
-  margin-bottom: 14px;
-}
-
-.tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-.tag {
-  font-family: var(--fm);
-  font-size: 12px;
-  padding: 4px 10px;
-  background: var(--bg);
-  color: var(--fg2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.tag:hover {
-  transform: translateY(-2px);
-  border-color: var(--fg2);
-}
-
-.tag.hi {
-  background: var(--accent-bg);
-  color: var(--accent-text);
-  border-color: transparent;
-}
-
-.proj-list { display: flex; flex-direction: column; gap: 32px; padding-top: 16px; }
-
-.proj {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.15s;
-}
-
-.proj:hover .proj-name { color: var(--accent); }
-.proj:hover .proj-arrow { color: var(--accent); transform: translate(3px, -3px); }
-
-.proj-arrow {
-  font-size: 16px;
-  color: var(--fg3);
-  transition: all 0.15s;
-  padding-top: 28px;
-}
-
-/* Image container for parallax */
-.proj-img-wrap {
-  width: 100%;
-  height: 240px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  overflow: hidden; /* Crucial for parallax hiding edges */
-  background-color: #e4e4e0;
-}
-
-.proj-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Scale up slightly to give parallax room to move without showing edges */
-  transform: scale(1.15); 
-}
-
-.proj-idx {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--fg3);
-  margin-bottom: 8px;
-}
-
-.proj-name {
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-  transition: color 0.15s;
-}
-
-.proj-desc {
-  font-size: 13px;
-  color: var(--fg2);
-  line-height: 1.7;
-  font-weight: 300;
-  margin-bottom: 14px;
-}
-
-.proj-stack { display: flex; gap: 6px; flex-wrap: wrap; }
-
-.stack-tag {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--fg3);
-  padding: 2px 8px;
-  border: 1px solid var(--border);
-  border-radius: 3px;
-}
-
-.resume-block { margin-bottom: 52px; }
-
-.resume-block-head {
-  font-family: var(--fm);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--fg3);
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 24px;
-}
-
-.resume-row {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 24px;
-  align-items: baseline;
-  margin-bottom: 24px;
-}
-
-@media (max-width: 500px) {
-  .resume-row { grid-template-columns: 1fr; gap: 8px; }
-  .resume-date { text-align: left !important; }
-}
-
-.resume-title {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--fg);
-  margin-bottom: 4px;
-}
-
-.resume-company {
-  font-family: var(--fm);
-  font-size: 12px;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.resume-note {
-  font-size: 13px;
-  color: var(--fg2);
-  line-height: 1.6;
-  font-weight: 300;
-}
-
-.resume-date {
-  font-family: var(--fm);
-  font-size: 12px;
-  color: var(--fg3);
-  text-align: right;
-}
-
-.contact-label {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: #a8a7a3;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.contact-h {
-  font-size: clamp(36px, 6vw, 52px);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-.contact-sub {
-  font-size: 15px;
-  color: #a8a7a3;
-  max-width: 320px;
-  margin: 0 0 40px;
-  font-weight: 300;
-}
-
-.contact-rows {
-  border-top: 1px solid #333333;
-  max-width: 480px;
-}
-
-.contact-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #333333;
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.15s;
-  will-change: transform;
-}
-
-.contact-row:hover { padding-left: 6px; opacity: 1; }
-.contact-row:hover .ca { color: var(--accent); transform: translate(3px, -3px); }
-
-.cp {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: #a8a7a3;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.ch {
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-}
-
-.ca { font-size: 16px; color: #a8a7a3; transition: all 0.15s; }
-
-footer {
-  padding: 40px;
-  text-align: center;
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--fg3);
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav>
-  <div class="logo">Dareen<span>.</span></div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <div class="logo">Dareen<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
 <section id="hero">
-  <div class="wrap" style="position: relative;">
+  <div class="wrap hero-wrap">
     <div class="label gsap-hero">Computer Engineering Student</div>
     <h1 class="gsap-hero">Building robust software <span class="accent">&amp;</span> physical systems.</h1>
     <p class="hero-desc gsap-hero">I am a Computer Engineering student at the University of Toronto specializing in B2B Integrations, API Architecture, and Real-Time Systems.</p>
@@ -549,88 +47,16 @@ footer {
 </section>
 
 <hr>
-<section id="about">
-  <div class="wrap">
-    <h2 class="gsap-fade-up">About</h2>
-    <div class="about-body gsap-fade-up">
-      <div>
-        <p>I am a builder who thrives at the intersection of hardware and software. Whether I’m designing closed-loop control algorithms for rehabilitative exoskeletons or architecting bare-metal Verilog game engines on FPGAs, I am obsessed with understanding how things work under the hood and optimizing them for peak performance.</p>
-        <p>Right now, I am focused on leveraging AI, scalable data pipelines, and robust API architectures to solve complex enterprise challenges. I love taking on ambitious technical problems—especially those that require bridging the gap between physical systems and high-throughput backend infrastructure.</p>
-      </div>
-      <div class="about-facts">
-        <div class="fact">
-          <span class="fact-key">Location</span>
-          <span class="fact-val">Washington D.C. Area / Toronto</span>
-        </div>
-        <div class="fact">
-          <span class="fact-key">Education</span>
-          <span class="fact-val">UofT ECE</span>
-        </div>
-        <div class="fact">
-          <span class="fact-key">Focus</span>
-          <span class="fact-val">Software / Hardware Integration</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr>
-<section id="skills">
-  <div class="wrap">
-    <h2 class="gsap-fade-up">Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-block gsap-stagger-card">
-        <div class="skill-head">Languages</div>
-        <div class="tags">
-          <span class="tag hi">C++</span>
-          <span class="tag hi">Python</span>
-          <span class="tag hi">Java</span>
-          <span class="tag">Verilog</span>
-          <span class="tag">SQL</span>
-          <span class="tag">C</span>
-        </div>
-      </div>
-      <div class="skill-block gsap-stagger-card">
-        <div class="skill-head">Technologies & Tools</div>
-        <div class="tags">
-          <span class="tag hi">REST APIs</span>
-          <span class="tag">Git/GitHub</span>
-          <span class="tag">Linux</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Data Structures</span>
-          <span class="tag">Pandas/NumPy</span>
-        </div>
-      </div>
-      <div class="skill-block gsap-stagger-card">
-        <div class="skill-head">Hardware & Embedded</div>
-        <div class="tags">
-          <span class="tag hi">FPGA (Altera DE1-SoC)</span>
-          <span class="tag">ModelSim</span>
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag">Sensors (sEMG, IMU)</span>
-        </div>
-      </div>
-      <div class="skill-block gsap-stagger-card">
-        <div class="skill-head">Concepts</div>
-        <div class="tags">
-          <span class="tag hi">Object-Oriented Design</span>
-          <span class="tag">Agile/Scrum</span>
-          <span class="tag">Data Pipelines</span>
-          <span class="tag">Machine Learning</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr>
 <section id="work">
   <div class="wrap">
-    <h2 class="gsap-fade-up">Selected Projects</h2>
+    <div class="gsap-fade-up" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 32px;">
+      <h2 style="margin-bottom: 0;">Selected Projects</h2>
+      <a href="projects.html" class="btn btn-outline" style="padding: 6px 14px; font-size: 11px;">View All Projects ↗</a>
+    </div>
+
     <div class="proj-list">
 
-      <a href="https://github.com/dareen-nasreldin" target="_blank" class="proj gsap-proj">
+      <a href="https://github.com/dareen-nasreldin/ECE297-GIS-Map" target="_blank" class="proj gsap-proj">
         <div class="proj-img-wrap">
             <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/ECE297-GIS-Map/main/README_IMAGE.png" alt="GIS Mapping Engine Preview" onerror="this.style.display='none'" loading="lazy">
         </div>
@@ -670,9 +96,8 @@ footer {
 
       <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj gsap-proj">
         <div class="proj-img-wrap">
-            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/flappy-FPGA-verilog/main/README_IMAGE.png" alt="FPGA Game Preview" onerror="this.style.display='none'" loading="lazy">
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <img class="proj-img" src="images/flappy.gif" alt="Flappy Bird FPGA Game Engine" style="object-position: center 10%;" onerror="this.style.display='none'" loading="lazy">
+        </div> <div style="display:grid; grid-template-columns:1fr 10px; gap:16px; align-items:start;">
           <div>
             <div class="proj-idx">03</div>
             <div class="proj-name">Flappy Bird FPGA Game Engine</div>
@@ -744,13 +169,88 @@ footer {
 </section>
 
 <hr>
+<section id="skills">
+  <div class="wrap"> <h2 class="gsap-fade-up">Skills</h2> <div class="skills-grid">
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Languages</div>
+        <div class="tags">
+          <span class="tag hi">C++</span>
+          <span class="tag hi">Python</span>
+          <span class="tag hi">C</span>
+          <span class="tag">RISC-V Assembly</span>
+          <span class="tag">Verilog</span>
+          <span class="tag">Java</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Technologies & Tools</div>
+        <div class="tags">
+          <span class="tag hi">REST APIs</span>
+          <span class="tag">Git/GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Quartus Prime</span>
+          <span class="tag">Pandas/NumPy</span>
+        </div>
+      </div>
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Hardware & Embedded</div>
+        <div class="tags">
+          <span class="tag hi">FPGA (Altera DE1-SoC)</span>
+          <span class="tag">ModelSim</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Biosensors (sEMG/EEG)</span>
+        </div>
+      </div>
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Concepts</div>
+        <div class="tags">
+          <span class="tag hi">Bare-Metal Programming</span>
+          <span class="tag">Object-Oriented Design</span>
+          <span class="tag">Signal Processing</span>
+          <span class="tag">Data Pipelines</span>
+          <span class="tag">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+    
+  </div> </section>
+
+<hr>
+<section id="about">
+  <div class="wrap">
+    <h2 class="gsap-fade-up">About</h2>
+    <div class="about-body gsap-fade-up">
+      <div>
+        <p>I am a builder who thrives at the intersection of hardware and software. Whether I’m designing closed-loop control algorithms for rehabilitative exoskeletons or architecting bare-metal Verilog game engines on FPGAs, I am obsessed with understanding how things work under the hood and optimizing them for peak performance.</p>
+        <p>Right now, I am focused on leveraging AI, scalable data pipelines, and robust API architectures to solve complex enterprise challenges. I love taking on ambitious technical problems—especially those that require bridging the gap between physical systems and high-throughput backend infrastructure.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact">
+          <span class="fact-key">Location</span>
+          <span class="fact-val">Washington D.C. Area / Toronto</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Education</span>
+          <span class="fact-val">UofT ECE</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Focus</span>
+          <span class="fact-val">Software / Hardware Integration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
 <!-- The contact section is completely static on scroll, but magnetic hover effects stay -->
-<section id="contact" style="background: var(--fg);">
+<section id="contact">
   <div class="wrap">
     <div class="contact-label">Contact</div>
     <div class="contact-h">Let's connect.</div>
-    <p class="contact-sub">Open to 2026 internships in software engineering, API development, and hardware integration.</p>
-    <div class="contact-rows">
+   <p class="contact-sub">Open to Summer 2027 internships or 12-16 month Co-ops (PEY) in software engineering, API development, and hardware integration.</p>
       <a class="contact-row" href="mailto:dareennasreldin@gmail.com">
         <div>
           <div class="cp">Email</div>
@@ -776,9 +276,9 @@ footer {
   </div>
 </section>
 
-<footer style="background: var(--fg); border-top: 1px solid #1a1a1a; padding: 40px 40px 80px; display: flex; justify-content: space-between; align-items: center;">
-  <span style="font-family: var(--fm); font-size: 11px; color: #888;">© 2026 Dareen M. Nasreldin</span>
-  <span style="font-family: var(--fm); font-size: 11px; color: #888;">Washington D.C. / Toronto</span>
+<footer class="site-footer">
+  <span class="footer-meta">© 2026 Dareen M. Nasreldin</span>
+  <span class="footer-meta">Washington D.C. / Toronto</span>
 </footer>
 
 <!-- GSAP Core & ScrollTrigger -->
@@ -854,7 +354,7 @@ footer {
           trigger: proj,
           start: "top bottom", 
           end: "bottom top",
-          scrub: true // "Scrub" makes the animation tied exactly to the scrollbar
+          scrub: true
         }
       });
     }
@@ -876,7 +376,7 @@ footer {
   });
 
   // 6. MAGNETIC HOVER EFFECT (For CTA buttons and Contact links)
-  const magnets = document.querySelectorAll('.btn, .contact-row');
+  const magnets = document.querySelectorAll('.btn, .contact-row, .proj-carousel-btn, .proj-carousel-zoom');
   
   magnets.forEach(magnet => {
     magnet.addEventListener('mousemove', (e) => {

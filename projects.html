@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Projects — Dareen M. Nasreldin</title>
+<meta name="description" content="A complete archive of software, hardware, and integration projects by Dareen M. Nasreldin.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-projects">
+
+<nav>
+  <a href="index.html" class="logo">Dareen<span>.</span></a>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</nav>
+
+<section>
+  <div class="wrap">
+    <h1 class="gsap-fade">Project Archive</h1>
+    <p class="header-desc gsap-fade">A complete collection of my software, hardware, and integration builds.</p>
+    
+    <div class="archive-grid">
+      
+      <a href="https://github.com/dareen-nasreldin/gis-routing-engine" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">GIS Mapping & Courier Routing Engine</div>
+        <div class="card-desc">Architected a city-scale mapping system capable of sub-second pathfinding across 100,000+ nodes. Engineered a high-performance routing engine using heuristic algorithms to solve NP-Hard Traveling Salesman scenarios.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">C++</span>
+          <span class="stack-tag">Heuristics</span>
+          <span class="stack-tag">Algorithms</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">LinkedIn-to-Notion Automation Pipeline</div>
+        <div class="card-desc">Engineered a Python automation suite to aggregate job postings and sync them securely to a Notion database via RESTful APIs with resilient error handling and request parsing.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">REST APIs</span>
+          <span class="stack-tag">Automation</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/flappy-bird-fpga-engine" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">Flappy Bird FPGA Game Engine</div>
+        <div class="card-desc">Engineered a deterministic game engine from scratch using Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU to achieve microsecond-latency response times with custom VGA/PS2 drivers.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">Verilog</span>
+          <span class="stack-tag">FPGA</span>
+          <span class="stack-tag">Hardware Logic</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">sEMG Exoskeleton Control Software</div>
+        <div class="card-desc">Real-time signal processing pipelines and machine learning models trained to analyze noisy sEMG/EEG biosignals for a motorized rehabilitative exoskeleton arm.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Machine Learning</span>
+          <span class="stack-tag">Signal Processing</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="footer-meta">© 2026 Dareen M. Nasreldin</span>
+  <span class="footer-meta">Washington D.C. / Toronto</span>
+</footer>    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  gsap.set(".gsap-fade, .gsap-card", { visibility: "visible" });
+
+  const tl = gsap.timeline();
+  tl.from(".gsap-fade", { y: 20, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" })
+    .from(".gsap-card", { y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }, "-=0.2");
+</script>
+
+</body>
+</html>
