@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <canvas id="hardware-matrix"></canvas>
 
   <nav>
     <div class="logo">Dareen<span>.</span></div>
@@ -407,6 +408,39 @@
       scrub: 1 // Smooth scrolling
     }
   });
+</script>
+<script>
+  // ECE Matrix Rain Effect
+  const canvas = document.getElementById('hardware-matrix');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  const words = ['0', '1', 'C++', 'Verilog', 'RISC-V', 'FPGA'];
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+  
+  function drawMatrix() {
+    // Translucent background to create trail effect
+    ctx.fillStyle = 'rgba(247, 247, 245, 0.1)'; 
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = '#a8a7a3'; // Uses your subtle gray color
+    ctx.font = fontSize + 'px "Geist Mono"';
+    
+    for (let i = 0; i < drops.length; i++) {
+      const text = words[Math.floor(Math.random() * words.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+  setInterval(drawMatrix, 60);
 </script>
 
 </body>
