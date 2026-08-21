@@ -192,6 +192,7 @@ h2 {
 hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 
 #hero {
+  position: relative;
   min-height: 100vh;
   display: flex; align-items: center;
   padding-top: var(--nav);

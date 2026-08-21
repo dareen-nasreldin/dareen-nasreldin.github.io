@@ -13,6 +13,7 @@
 <meta property="og:image" content="https://dareen-nasreldin.github.io/preview.png">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components/terminal-hero.css">
 </head>
 <body>
   <canvas id="hardware-matrix"></canvas>
@@ -45,6 +46,8 @@
       <div class="polaroid-caption">Me!</div>
     </div>
   </div>
+
+  <div id="terminal-widget" class="term-widget"></div>
 </section>
 
 <hr>
@@ -441,6 +444,12 @@
     }
   }
   setInterval(drawMatrix, 60);
+</script>
+
+<script src="components/terminal-hero.js"></script>
+<script src="components/terminal-widget.js"></script>
+<script>
+  createTerminalWidget(document.getElementById('terminal-widget'), { loop: true });
 </script>
 
 </body>
