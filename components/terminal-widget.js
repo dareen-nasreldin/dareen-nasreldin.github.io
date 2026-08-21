@@ -7,8 +7,8 @@
   const DEFAULT_EXPANDED_WIDTH = 420;
   const DEFAULT_EXPANDED_HEIGHT = 340;
 
-  function maxWidth() { return Math.min(640, window.innerWidth * 0.9); }
-  function maxHeight() { return Math.min(520, window.innerHeight * 0.8); }
+  function maxWidth() { return Math.min(900, window.innerWidth * 0.95); }
+  function maxHeight() { return Math.min(700, window.innerHeight * 0.9); }
 
   function createTerminalWidget(mountEl, heroOpts) {
     let floating = false;
