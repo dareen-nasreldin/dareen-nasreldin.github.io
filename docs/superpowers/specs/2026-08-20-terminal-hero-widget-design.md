@@ -160,10 +160,12 @@ if it visibly stutters.
 
 ## 6. Command set
 
-Exactly 9, chosen from a broader brainstormed list and cut for redundancy /
-low value (see conversation for the full rejected list — `education`, `resume`,
-`ls`, `ping`, `history`, `neofetch` were cut as either duplicating visible page
-content or not worth their own command).
+9 documented commands (listed by `help`), chosen from a broader brainstormed
+list and cut for redundancy / low value (see conversation for the full
+rejected list — `education`, `resume`, `ls`, `ping`, `history`, `neofetch`
+were cut as either duplicating visible page content or not worth their own
+command) — plus one secret 10th: `sudo make-me-a-sandwich`, deliberately left
+out of `help`'s listing so it stays a surprise.
 
 | Command | Output |
 |---|---|
