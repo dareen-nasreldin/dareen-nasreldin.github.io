@@ -19,6 +19,11 @@
     let hero = null;
 
     function doReset() {
+      if (dragStart) {
+        dragStart = null;
+        document.removeEventListener('pointermove', onDragMove);
+        document.removeEventListener('pointerup', onDragEnd);
+      }
       if (floating) {
         mountEl.classList.remove('term-widget--floating');
         mountEl.style.left = '';
@@ -47,6 +52,11 @@
 
     function collapse() {
       if (!expanded) return;
+      if (resizeStart) {
+        resizeStart = null;
+        document.removeEventListener('pointermove', onResizeMove);
+        document.removeEventListener('pointerup', onResizeEnd);
+      }
       expanded = false;
       mountEl.classList.remove('term-window--expanded');
       mountEl.style.width = '';
