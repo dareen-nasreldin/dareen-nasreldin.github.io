@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dareen M. Nasreldin — Computer Engineering @ UofT</title>
-<meta name="description" content="Dareen M. Nasreldin - Computer Engineering student at UofT specializing in B2B Integrations, API Architecture, and Real-Time Systems.">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://dareen-nasreldin.github.io/">
-<meta property="og:title" content="Dareen M. Nasreldin — Portfolio">
-<meta property="og:description" content="Computer Engineering student at UofT specializing in B2B Integrations, API Architecture, and Real-Time Systems.">
-<meta property="og:image" content="https://dareen-nasreldin.github.io/preview.png">
+<title>Preview E — Draggable Widget | Dareen M. Nasreldin</title>
+<meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="components/terminal-hero.css">
+<style>
+  /* VARIANT E: positioning/backdrop/resize classes now live in
+     components/terminal-hero.css (.term-widget, .term-widget--floating,
+     .term-window--expanded, .term-backdrop, .term-resize-handle). */
+  #hero { position: relative; }
+</style>
 </head>
 <body>
   <canvas id="hardware-matrix"></canvas>
@@ -47,7 +47,8 @@
     </div>
   </div>
 
-  <div id="terminal-widget" class="term-widget"></div>
+  <!-- VARIANT E: draggable corner widget, starts pinned bottom-right -->
+  <div id="terminal-mount-e" class="term-widget"></div>
 </section>
 
 <hr>
@@ -127,7 +128,7 @@
 
     <div class="resume-block">
       <div class="resume-block-head gsap-fade-up">Technical & Research</div>
-      
+
       <div class="resume-row gsap-resume-row">
         <div>
           <div class="resume-title">Incoming Software Engineering Intern</div>
@@ -218,7 +219,7 @@
         </div>
       </div>
     </div>
-    
+
   </div> </section>
 
 <hr>
@@ -249,7 +250,6 @@
 </section>
 
 <hr>
-<!-- The contact section is completely static on scroll, but magnetic hover effects stay -->
 <section id="contact">
   <div class="wrap">
     <div class="contact-label">Contact</div>
@@ -285,171 +285,99 @@
   <span class="footer-meta">Washington D.C. / Toronto</span>
 </footer>
 
-<!-- GSAP Core & ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="components/terminal-hero.js"></script>
+<script src="components/terminal-widget.js"></script>
 
 <script>
-  // Register the plugin
   gsap.registerPlugin(ScrollTrigger);
-
-  // Unhide everything before animating (prevents ugly flashing on load)
-  // Removed .gsap-contact-row since it's no longer used
   gsap.set(".gsap-hero, .gsap-fade-up, .gsap-stagger-card, .gsap-proj, .gsap-resume-row, .gsap-polaroid", { visibility: "visible" });
 
-  // 1. Hero Load Sequence (Timeline)
   const heroTl = gsap.timeline();
   heroTl.from(".gsap-hero:nth-child(1)", { y: 20, opacity: 0, duration: 0.6, delay: 0.2 })
         .from(".gsap-hero:nth-child(2)", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
         .from(".gsap-hero:nth-child(3)", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5")
         .from(".cta-row a", { y: 15, opacity: 0, duration: 0.5, stagger: 0.1 }, "-=0.4")
-        // Pop in the polaroid
         .from(".gsap-polaroid", { y: 40, opacity: 0, rotation: 0, duration: 1, ease: "back.out(1.2)" }, "-=0.6");
 
-  // 2. Fade Up Elements on Scroll (Headers, About text, etc)
   gsap.utils.toArray('.gsap-fade-up').forEach(element => {
     gsap.from(element, {
-      scrollTrigger: {
-        trigger: element,
-        start: "top 95%", 
-        toggleActions: "play none none none" 
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out"
+      scrollTrigger: { trigger: element, start: "top 95%", toggleActions: "play none none none" },
+      y: 30, opacity: 0, duration: 0.8, ease: "power2.out"
     });
   });
 
-  // 3. Stagger Cards on Scroll (Skills)
   gsap.from(".gsap-stagger-card", {
-    scrollTrigger: {
-      trigger: ".skills-grid",
-      start: "top 95%"
-    },
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: "power2.out"
+    scrollTrigger: { trigger: ".skills-grid", start: "top 95%" },
+    y: 40, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out"
   });
 
-  // 4. Project Cards & Image Parallax on Scroll
   gsap.utils.toArray('.gsap-proj').forEach(proj => {
-    // Fade the project card in
     gsap.from(proj, {
-      scrollTrigger: {
-        trigger: proj,
-        start: "top 95%"
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
+      scrollTrigger: { trigger: proj, start: "top 95%" },
+      y: 50, opacity: 0, duration: 0.8, ease: "power3.out"
     });
-
-    // Parallax the image inside the card
     const img = proj.querySelector('.proj-img');
     if (img) {
       gsap.to(img, {
-        yPercent: 15, // Moves the image down by 15% as you scroll past
-        ease: "none",
-        scrollTrigger: {
-          trigger: proj,
-          start: "top bottom", 
-          end: "bottom top",
-          scrub: true
-        }
+        yPercent: 15, ease: "none",
+        scrollTrigger: { trigger: proj, start: "top bottom", end: "bottom top", scrub: true }
       });
     }
   });
 
-  // 5. Experience Rows Stagger
   gsap.utils.toArray('.resume-block').forEach(block => {
     gsap.from(block.querySelectorAll('.gsap-resume-row'), {
-      scrollTrigger: {
-        trigger: block,
-        start: "top 95%"
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power2.out"
+      scrollTrigger: { trigger: block, start: "top 95%" },
+      y: 30, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power2.out"
     });
   });
 
-  // 6. MAGNETIC HOVER EFFECT (For CTA buttons and Contact links)
   const magnets = document.querySelectorAll('.btn, .contact-row, .proj-carousel-btn, .proj-carousel-zoom');
-  
   magnets.forEach(magnet => {
     magnet.addEventListener('mousemove', (e) => {
       const rect = magnet.getBoundingClientRect();
-      // Calculate cursor position relative to the center of the element
       const x = (e.clientX - rect.left) - (rect.width / 2);
       const y = (e.clientY - rect.top) - (rect.height / 2);
-      
-      // Move element towards cursor (0.2 dictates the magnetic "strength")
       gsap.to(magnet, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
     });
-    
     magnet.addEventListener('mouseleave', () => {
-      // Snap back to 0,0 with a satisfying elastic bounce
       gsap.to(magnet, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
     });
   });
 
-  // 7. POLAROID PARALLAX EFFECT
   gsap.to(".gsap-polaroid", {
-    y: 120, // Moves down slightly slower than the page scrolls
-    rotation: -2, // Twists slightly as you scroll
-    ease: "none",
-    scrollTrigger: {
-      trigger: "#hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: 1 // Smooth scrolling
-    }
+    y: 120, rotation: -2, ease: "none",
+    scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 1 }
   });
 </script>
 <script>
-  // ECE Matrix Rain Effect
   const canvas = document.getElementById('hardware-matrix');
   const ctx = canvas.getContext('2d');
-  
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  
   const words = ['0', '1', 'C++', 'Verilog', 'RISC-V', 'FPGA'];
   const fontSize = 14;
   const columns = canvas.width / fontSize;
   const drops = Array(Math.floor(columns)).fill(1);
-  
   function drawMatrix() {
-    // Translucent background to create trail effect
-    ctx.fillStyle = 'rgba(247, 247, 245, 0.1)'; 
+    ctx.fillStyle = 'rgba(247, 247, 245, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    ctx.fillStyle = '#a8a7a3'; // Uses your subtle gray color
+    ctx.fillStyle = '#a8a7a3';
     ctx.font = fontSize + 'px "Geist Mono"';
-    
     for (let i = 0; i < drops.length; i++) {
       const text = words[Math.floor(Math.random() * words.length)];
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     }
   }
   setInterval(drawMatrix, 60);
 </script>
 
-<script src="components/terminal-hero.js"></script>
-<script src="components/terminal-widget.js"></script>
 <script>
-  createTerminalWidget(document.getElementById('terminal-widget'), { loop: true });
+  createTerminalWidget(document.getElementById('terminal-mount-e'), { loop: true });
 </script>
 
 </body>

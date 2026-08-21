@@ -1,0 +1,192 @@
+/* --- Terminal Hero: mock PowerShell window --- */
+
+.term-window {
+  position: relative;
+  font-family: var(--fm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.03);
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.term-window--expanded {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.term-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+  cursor: grab;
+}
+
+.term-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c9ab7c;
+  opacity: 0.8;
+}
+
+.term-title {
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--fg3);
+  letter-spacing: 0.04em;
+}
+
+.term-body {
+  padding: 14px 16px 16px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--fg);
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.term-window--expanded .term-body {
+  max-height: none;
+}
+
+.term-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.term-prompt {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.term-cursor {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 1px;
+  animation: term-blink 1s steps(1) infinite;
+}
+
+@keyframes term-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Screen-reader-only transcript: full text available immediately,
+   independent of the animation's pacing. */
+.term-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.term-titlebar-controls {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.term-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--fg3);
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.term-icon-btn:hover {
+  color: var(--fg);
+}
+
+.term-input-row {
+  display: flex;
+  align-items: center;
+}
+
+.term-prompt-input {
+  flex: 1;
+  font-family: var(--fm);
+  font-size: inherit;
+  color: var(--fg);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.term-prompt-input::placeholder {
+  color: var(--fg3);
+  opacity: 0.6;
+}
+
+.term-resize-handle {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  opacity: 0.5;
+}
+
+.term-resize-handle:hover {
+  opacity: 0.9;
+}
+
+.term-resize-handle::before {
+  content: '';
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.term-backdrop {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(127, 119, 221, 0.10);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.term-widget {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 5;
+}
+
+.term-widget--floating {
+  position: fixed;
+  right: auto;
+  bottom: auto;
+}
+
+@media (max-width: 950px) {
+  .term-widget {
+    display: none;
+  }
+}
