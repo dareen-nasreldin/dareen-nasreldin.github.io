@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview E — Draggable Widget | Dareen M. Nasreldin</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components/terminal-hero.css">
+<style>
+  /* VARIANT E: positioning/backdrop/resize classes now live in
+     components/terminal-hero.css (.term-widget, .term-widget--floating,
+     .term-window--expanded, .term-backdrop, .term-resize-handle). */
+  #hero { position: relative; }
+</style>
+</head>
+<body>
+  <canvas id="hardware-matrix"></canvas>
+
+  <nav>
+    <div class="logo">Dareen<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+<section id="hero">
+  <div class="wrap hero-wrap">
+    <div class="label gsap-hero">Computer Engineering Student</div>
+    <h1 class="gsap-hero">Building robust software <span class="accent">&amp;</span> physical systems.</h1>
+    <p class="hero-desc gsap-hero">I am a Computer Engineering student at the University of Toronto specializing in B2B Integrations, API Architecture, and Real-Time Systems.</p>
+    <div class="cta-row gsap-hero">
+      <a href="#work" class="btn btn-solid">View projects</a>
+      <a href="#contact" class="btn btn-outline">Contact me</a>
+      <a href="resume.pdf" target="_blank" class="btn btn-outline">Resume PDF ↓</a>
+    </div>
+
+    <!-- Floating Polaroid -->
+    <div class="polaroid gsap-polaroid">
+      <img src="dareen_pic.jpg" alt="Dareen Nasreldin">
+      <div class="polaroid-caption">Me!</div>
+    </div>
+  </div>
+
+  <!-- VARIANT E: draggable corner widget, starts pinned bottom-right -->
+  <div id="terminal-mount-e" class="term-widget"></div>
+</section>
+
+<hr>
+<section id="work">
+  <div class="wrap">
+    <div class="gsap-fade-up" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 32px;">
+      <h2 style="margin-bottom: 0;">Selected Projects</h2>
+      <a href="projects.html" class="btn btn-outline" style="padding: 6px 14px; font-size: 11px;">View All Projects ↗</a>
+    </div>
+
+    <div class="proj-list">
+
+      <a href="https://github.com/dareen-nasreldin/ECE297-GIS-Map" target="_blank" class="proj gsap-proj">
+        <div class="proj-img-wrap">
+            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/ECE297-GIS-Map/main/README_IMAGE.png" alt="GIS Mapping Engine Preview" onerror="this.style.display='none'" loading="lazy">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">01</div>
+            <div class="proj-name">GIS Mapping & Courier Routing Engine</div>
+            <div class="proj-desc">Architected a city-scale mapping system in C++ capable of sub-second pathfinding across 100,000+ nodes. Engineered a high-performance courier delivery routing engine using advanced heuristic algorithms to optimize large-scale, multi-drop pickup and delivery routes, effectively tackling the NP-Hard Traveling Salesman Problem.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">C++</span>
+              <span class="stack-tag">Optimization Heuristics</span>
+              <span class="stack-tag">Data Structures</span>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="proj gsap-proj">
+        <div class="proj-img-wrap">
+          <img class="proj-img" src="images/notion.png" alt="Notion Automation Preview" style="object-fit: cover; object-position: top center;" onerror="this.style.display='none'" loading="lazy">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">02</div>
+            <div class="proj-name">LinkedIn-to-Notion Automation Pipeline</div>
+            <div class="proj-desc">Engineered a Python automation suite to aggregate job postings and sync them securely to a Notion database via RESTful APIs with resilient error handling.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">REST APIs</span>
+              <span class="stack-tag">Automation</span>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj gsap-proj">
+        <div class="proj-img-wrap">
+          <img class="proj-img" src="images/flappy.gif" alt="Flappy Bird FPGA Game Engine" style="object-position: top center;" onerror="this.style.display='none'" loading="lazy">
+        </div> <div style="display:grid; grid-template-columns:1fr 10px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">03</div>
+            <div class="proj-name">Flappy Bird FPGA Game Engine</div>
+            <div class="proj-desc">Engineered a deterministic game engine from scratch using Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU to achieve microsecond-latency response times with custom VGA/PS2 drivers. The project's technical breakdown gained significant traction, garnering 405+ likes from the engineering community on LinkedIn.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">Verilog</span>
+              <span class="stack-tag">FPGA</span>
+              <span class="stack-tag">Hardware Logic</span>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<hr>
+<section id="experience">
+  <div class="wrap">
+    <h2 class="gsap-fade-up">Experience</h2>
+
+    <div class="resume-block">
+      <div class="resume-block-head gsap-fade-up">Technical & Research</div>
+
+      <div class="resume-row gsap-resume-row">
+        <div>
+          <div class="resume-title">Incoming Software Engineering Intern</div>
+          <div class="resume-company">Exiger</div>
+          <div class="resume-note">Incoming intern joining the engineering team to contribute to AI-powered supply chain and risk management platforms, leveraging my background in B2B integrations and API architecture.</div>
+        </div>
+        <div class="resume-date">Summer 2026</div>
+      </div>
+
+      <div class="resume-row gsap-resume-row">
+        <div>
+          <div class="resume-title">Software Subsystem Member</div>
+          <div class="resume-company">NeurotechUofT</div>
+          <div class="resume-note">Engineered real-time signal processing pipelines and trained machine learning models in Python to analyze noisy sEMG/EEG biosignals. Focused on highly accurate tremor detection to drive an assistive exoskeleton designed to actively stabilize arm movements, prioritizing low-latency data processing and system reliability.</div>
+        </div>
+        <div class="resume-date">Sep 2024 — Present</div>
+      </div>
+
+      <div class="resume-row gsap-resume-row">
+        <div>
+          <div class="resume-title">Team Lead - Bilaminar Skin Flap Biomodel (ESP II)</div>
+          <div class="resume-company">University of Toronto & Sunnybrook Hospital</div>
+          <div class="resume-note">Led a cross-functional engineering team to design and prototype a surgical biomodel for Dr. Oleh Antonyshyn. Managed the end-to-end workflow, conducting iterative concept development, client feedback sessions, and tensile testing to validate material properties.</div>
+        </div>
+        <div class="resume-date">Jan 2025 — Apr 2025</div>
+      </div>
+
+    </div>
+
+    <div class="resume-block">
+      <div class="resume-block-head gsap-fade-up">Education</div>
+      <div class="resume-row gsap-resume-row">
+        <div>
+          <div class="resume-title">BASc Computer Engineering</div>
+          <div class="resume-company">University of Toronto</div>
+          <div class="resume-note">Minor in Artificial Intelligence. Certificates in Cybersecurity and Engineering Business. Awarded $40,000 Engineering Merit Scholarship.</div>
+        </div>
+        <div class="resume-date">Expected 2028</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+<section id="skills">
+  <div class="wrap"> <h2 class="gsap-fade-up">Skills</h2> <div class="skills-grid">
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Languages</div>
+        <div class="tags">
+          <span class="tag hi">C++</span>
+          <span class="tag hi">Python</span>
+          <span class="tag hi">C</span>
+          <span class="tag">RISC-V Assembly</span>
+          <span class="tag">Verilog</span>
+          <span class="tag">Java</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Technologies & Tools</div>
+        <div class="tags">
+          <span class="tag hi">REST APIs</span>
+          <span class="tag">Git/GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Quartus Prime</span>
+          <span class="tag">Pandas/NumPy</span>
+        </div>
+      </div>
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Hardware & Embedded</div>
+        <div class="tags">
+          <span class="tag hi">FPGA (Altera DE1-SoC)</span>
+          <span class="tag">ModelSim</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Biosensors (sEMG/EEG)</span>
+        </div>
+      </div>
+      <div class="skill-block gsap-stagger-card">
+        <div class="skill-head">Concepts</div>
+        <div class="tags">
+          <span class="tag hi">Bare-Metal Programming</span>
+          <span class="tag">Object-Oriented Design</span>
+          <span class="tag">Signal Processing</span>
+          <span class="tag">Data Pipelines</span>
+          <span class="tag">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+
+  </div> </section>
+
+<hr>
+<section id="about">
+  <div class="wrap">
+    <h2 class="gsap-fade-up">About</h2>
+    <div class="about-body gsap-fade-up">
+      <div>
+        <p>I am a builder who thrives at the intersection of hardware and software. Whether I’m designing closed-loop control algorithms for rehabilitative exoskeletons or architecting bare-metal Verilog game engines on FPGAs, I am obsessed with understanding how things work under the hood and optimizing them for peak performance.</p>
+        <p>Right now, I am focused on leveraging AI, scalable data pipelines, and robust API architectures to solve complex enterprise challenges. I love taking on ambitious technical problems—especially those that require bridging the gap between physical systems and high-throughput backend infrastructure.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact">
+          <span class="fact-key">Location</span>
+          <span class="fact-val">Washington D.C. Area / Toronto</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Education</span>
+          <span class="fact-val">UofT ECE</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Focus</span>
+          <span class="fact-val">Software / Hardware Integration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-label">Contact</div>
+    <div class="contact-h">Let's connect.</div>
+   <p class="contact-sub">Open to Summer 2027 internships or 12-16 month Co-ops (PEY) in software engineering, API development, and hardware integration.</p>
+      <a class="contact-row" href="mailto:dareennasreldin@gmail.com">
+        <div>
+          <div class="cp">Email</div>
+          <div class="ch">dareennasreldin@gmail.com</div>
+        </div>
+        <div class="ca">↗</div>
+      </a>
+      <a class="contact-row" href="https://linkedin.com/in/dareen-nasreldin" target="_blank">
+        <div>
+          <div class="cp">LinkedIn</div>
+          <div class="ch">/in/dareen-nasreldin</div>
+        </div>
+        <div class="ca">↗</div>
+      </a>
+      <a class="contact-row" href="https://github.com/dareen-nasreldin" target="_blank">
+        <div>
+          <div class="cp">GitHub</div>
+          <div class="ch">github.com/dareen-nasreldin</div>
+        </div>
+        <div class="ca">↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="footer-meta">© 2026 Dareen M. Nasreldin</span>
+  <span class="footer-meta">Washington D.C. / Toronto</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="components/terminal-hero.js"></script>
+<script src="components/terminal-widget.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.set(".gsap-hero, .gsap-fade-up, .gsap-stagger-card, .gsap-proj, .gsap-resume-row, .gsap-polaroid", { visibility: "visible" });
+
+  const heroTl = gsap.timeline();
+  heroTl.from(".gsap-hero:nth-child(1)", { y: 20, opacity: 0, duration: 0.6, delay: 0.2 })
+        .from(".gsap-hero:nth-child(2)", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
+        .from(".gsap-hero:nth-child(3)", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5")
+        .from(".cta-row a", { y: 15, opacity: 0, duration: 0.5, stagger: 0.1 }, "-=0.4")
+        .from(".gsap-polaroid", { y: 40, opacity: 0, rotation: 0, duration: 1, ease: "back.out(1.2)" }, "-=0.6");
+
+  gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+    gsap.from(element, {
+      scrollTrigger: { trigger: element, start: "top 95%", toggleActions: "play none none none" },
+      y: 30, opacity: 0, duration: 0.8, ease: "power2.out"
+    });
+  });
+
+  gsap.from(".gsap-stagger-card", {
+    scrollTrigger: { trigger: ".skills-grid", start: "top 95%" },
+    y: 40, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out"
+  });
+
+  gsap.utils.toArray('.gsap-proj').forEach(proj => {
+    gsap.from(proj, {
+      scrollTrigger: { trigger: proj, start: "top 95%" },
+      y: 50, opacity: 0, duration: 0.8, ease: "power3.out"
+    });
+    const img = proj.querySelector('.proj-img');
+    if (img) {
+      gsap.to(img, {
+        yPercent: 15, ease: "none",
+        scrollTrigger: { trigger: proj, start: "top bottom", end: "bottom top", scrub: true }
+      });
+    }
+  });
+
+  gsap.utils.toArray('.resume-block').forEach(block => {
+    gsap.from(block.querySelectorAll('.gsap-resume-row'), {
+      scrollTrigger: { trigger: block, start: "top 95%" },
+      y: 30, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power2.out"
+    });
+  });
+
+  const magnets = document.querySelectorAll('.btn, .contact-row, .proj-carousel-btn, .proj-carousel-zoom');
+  magnets.forEach(magnet => {
+    magnet.addEventListener('mousemove', (e) => {
+      const rect = magnet.getBoundingClientRect();
+      const x = (e.clientX - rect.left) - (rect.width / 2);
+      const y = (e.clientY - rect.top) - (rect.height / 2);
+      gsap.to(magnet, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
+    });
+    magnet.addEventListener('mouseleave', () => {
+      gsap.to(magnet, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
+    });
+  });
+
+  gsap.to(".gsap-polaroid", {
+    y: 120, rotation: -2, ease: "none",
+    scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 1 }
+  });
+</script>
+<script>
+  const canvas = document.getElementById('hardware-matrix');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const words = ['0', '1', 'C++', 'Verilog', 'RISC-V', 'FPGA'];
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(247, 247, 245, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#a8a7a3';
+    ctx.font = fontSize + 'px "Geist Mono"';
+    for (let i = 0; i < drops.length; i++) {
+      const text = words[Math.floor(Math.random() * words.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  setInterval(drawMatrix, 60);
+</script>
+
+<script>
+  createTerminalWidget(document.getElementById('terminal-mount-e'), { loop: true });
+</script>
+
+</body>
+</html>
