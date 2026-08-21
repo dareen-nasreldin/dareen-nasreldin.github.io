@@ -23,32 +23,87 @@
     
     <div class="archive-grid">
 
-      <a href="https://github.com/dareen-nasreldin/gis-routing-engine" target="_blank" class="archive-card gsap-card">
+      <a href="https://github.com/dareen-nasreldin/GIS-Routing-Engine" target="_blank" class="archive-card gsap-card">
         <div class="card-top">
           <span class="folder-icon">📁</span>
           <span class="github-link">↗</span>
         </div>
-        <div class="card-title">GIS Mapping & Courier Routing Engine</div>
-        <div class="card-desc">Architected a city-scale mapping system capable of sub-second pathfinding across 100,000+ nodes. Engineered a high-performance courier routing engine using heuristic algorithms to tackle the NP-Hard Traveling Salesman Problem.</div>
+        <div class="card-title">Scalable GIS Routing Engine</div>
+        <div class="card-desc">Built a high-performance geographic mapping application in C++, using parallel threads to route data across 100,000+ intersection nodes. Dropped pathfinding execution times to sub-second latency by replacing Dijkstra's with the A* algorithm, and updated the EZGL front-end with dynamic sidebar controls for real-time route instructions.</div>
         <div class="proj-stack">
           <span class="stack-tag">C++</span>
-          <span class="stack-tag">Heuristics</span>
-          <span class="stack-tag">Algorithms</span>
+          <span class="stack-tag">Parallel Systems</span>
+          <span class="stack-tag">Data Processing</span>
         </div>
       </a>
 
       <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="archive-card gsap-card">
-        <img class="proj-img" src="images/repos/flappy-FPGA-verilog.gif" alt="Flappy Bird FPGA Game Engine preview" onerror="this.style.display='none'" loading="lazy" style="width:100%;height:160px;object-fit:cover;object-position:top;border-radius:6px;margin-bottom:16px;">
+        <img class="proj-img" src="images/repos/flappy-FPGA-verilog.gif" alt="Bare-Metal FPGA Game Engine preview" onerror="this.style.display='none'" loading="lazy" style="width:100%;height:160px;object-fit:cover;object-position:top;border-radius:6px;margin-bottom:16px;">
         <div class="card-top">
           <span class="folder-icon">📁</span>
           <span class="github-link">↗</span>
         </div>
-        <div class="card-title">Flappy Bird FPGA Game Engine</div>
-        <div class="card-desc">Engineered a deterministic game engine entirely in Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU for microsecond-latency response times with custom VGA/PS2 drivers. Technical breakdown received 405+ likes from the engineering community on LinkedIn.</div>
+        <div class="card-title">Bare-Metal FPGA Game Engine</div>
+        <div class="card-desc">Architected a fully deterministic, zero-latency game engine in Verilog on an Altera DE1-SoC FPGA, operating entirely without a CPU or operating system. Engineered a multi-module FSM to handle collision detection and 640x480 VGA sprite rendering across a 50MHz clock domain, with bare-metal PS/2 drivers and custom LFSR-based RNG for the hex displays.</div>
         <div class="proj-stack">
           <span class="stack-tag">Verilog</span>
-          <span class="stack-tag">FPGA</span>
-          <span class="stack-tag">Hardware Logic</span>
+          <span class="stack-tag">Hardware Architecture</span>
+          <span class="stack-tag">ModelSim</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/VGA-Music-Sequencer" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">Embedded VGA Music Sequencer</div>
+        <div class="card-desc">Programmed a real-time digital synthesizer with zero-jitter audio playback by driving an 8kHz polling loop through memory-mapped I/O. Managed multi-page sheet music state with an optimized flat C struct for O(1) array deletion, and generated interactive square-wave audio using 16-bit PCM arrays and fixed-point phase accumulators.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">C</span>
+          <span class="stack-tag">Embedded Systems</span>
+          <span class="stack-tag">Real-Time Processing</span>
+        </div>
+      </a>
+
+      <a href="https://dareen-nasreldin.github.io" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">Interactive Developer Portfolio</div>
+        <div class="card-desc">Built this fully responsive personal portfolio from scratch using vanilla JavaScript, CSS, and GSAP for scroll-driven animations, including a custom animated PowerShell-style terminal widget with a live command-line interface. Deployment is automated via GitHub Actions directly to GitHub Pages.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">GSAP</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">Surgical Biomodel Design (ESP II)</div>
+        <div class="card-desc">Collaborated with Sunnybrook Hospital surgeons to architect and prototype a bilaminar skin flap biomodel for facial reconstruction training. Validated the biomodel's anatomical realism and mechanical behavior through rigorous physical tensile testing, and delivered a comprehensive technical report on final design specifications and material cost-efficiency.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">Prototyping</span>
+          <span class="stack-tag">Materials Testing</span>
+          <span class="stack-tag">Client Management</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin" target="_blank" class="archive-card gsap-card">
+        <div class="card-top">
+          <span class="folder-icon">📁</span>
+          <span class="github-link">↗</span>
+        </div>
+        <div class="card-title">Bahen Courtyard Optimization (ESP I)</div>
+        <div class="card-desc">Translated ambiguous client problem statements into strict, measurable engineering requirements to optimize the spatial flow and functionality of a university courtyard. Iterated on conceptual designs using engineering matrices to quantitatively balance environmental, societal, and human factors.</div>
+        <div class="proj-stack">
+          <span class="stack-tag">Systems Design</span>
+          <span class="stack-tag">Requirements Gathering</span>
         </div>
       </a>
 
@@ -148,19 +203,6 @@
         <div class="card-desc">A project on GitHub.</div>
         <div class="proj-stack">
           <span class="stack-tag">TypeScript</span>
-        </div>
-      </a>
-
-      
-      <a href="https://github.com/dareen-nasreldin/GIS-Routing-Engine" target="_blank" class="archive-card gsap-card">
-        <div class="card-top">
-          <span class="folder-icon">📁</span>
-          <span class="github-link">↗</span>
-        </div>
-        <div class="card-title">Gis Routing Engine</div>
-        <div class="card-desc">A project on GitHub.</div>
-        <div class="proj-stack">
-          <span class="stack-tag">Code</span>
         </div>
       </a>
 

@@ -60,38 +60,19 @@
 
     <div class="proj-list">
 
-      <a href="https://github.com/dareen-nasreldin/ECE297-GIS-Map" target="_blank" class="proj gsap-proj">
+      <a href="https://github.com/dareen-nasreldin/GIS-Routing-Engine" target="_blank" class="proj gsap-proj">
         <div class="proj-img-wrap">
-            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/ECE297-GIS-Map/main/README_IMAGE.png" alt="GIS Mapping Engine Preview" onerror="this.style.display='none'" loading="lazy">
+            <img class="proj-img" src="https://raw.githubusercontent.com/dareen-nasreldin/GIS-Routing-Engine/main/README_IMAGE.png" alt="GIS Routing Engine Preview" onerror="this.style.display='none'" loading="lazy">
         </div>
         <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
           <div>
             <div class="proj-idx">01</div>
-            <div class="proj-name">GIS Mapping & Courier Routing Engine</div>
-            <div class="proj-desc">Architected a city-scale mapping system in C++ capable of sub-second pathfinding across 100,000+ nodes. Engineered a high-performance courier delivery routing engine using advanced heuristic algorithms to optimize large-scale, multi-drop pickup and delivery routes, effectively tackling the NP-Hard Traveling Salesman Problem.</div>
+            <div class="proj-name">Scalable GIS Routing Engine</div>
+            <div class="proj-desc">Built a high-performance geographic mapping application in C++, using parallel threads to route data across 100,000+ intersection nodes. Dropped pathfinding execution times to sub-second latency by replacing Dijkstra's with the A* algorithm, and updated the EZGL front-end with dynamic sidebar controls for real-time route instructions.</div>
             <div class="proj-stack">
               <span class="stack-tag">C++</span>
-              <span class="stack-tag">Optimization Heuristics</span>
-              <span class="stack-tag">Data Structures</span>
-            </div>
-          </div>
-          <div class="proj-arrow">↗</div>
-        </div>
-      </a>
-
-      <a href="https://github.com/dareen-nasreldin/linkedin_notion_tool" target="_blank" class="proj gsap-proj">
-        <div class="proj-img-wrap">
-          <img class="proj-img" src="images/notion.png" alt="Notion Automation Preview" style="object-fit: cover; object-position: top center;" onerror="this.style.display='none'" loading="lazy">
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
-          <div>
-            <div class="proj-idx">02</div>
-            <div class="proj-name">LinkedIn-to-Notion Automation Pipeline</div>
-            <div class="proj-desc">Engineered a Python automation suite to aggregate job postings and sync them securely to a Notion database via RESTful APIs with resilient error handling.</div>
-            <div class="proj-stack">
-              <span class="stack-tag">Python</span>
-              <span class="stack-tag">REST APIs</span>
-              <span class="stack-tag">Automation</span>
+              <span class="stack-tag">Parallel Systems</span>
+              <span class="stack-tag">Data Processing</span>
             </div>
           </div>
           <div class="proj-arrow">↗</div>
@@ -100,16 +81,33 @@
 
       <a href="https://github.com/dareen-nasreldin/flappy-FPGA-verilog" target="_blank" class="proj gsap-proj">
         <div class="proj-img-wrap">
-          <img class="proj-img" src="images/flappy.gif" alt="Flappy Bird FPGA Game Engine" style="object-position: top center;" onerror="this.style.display='none'" loading="lazy">
-        </div> <div style="display:grid; grid-template-columns:1fr 10px; gap:16px; align-items:start;">
+          <img class="proj-img" src="images/flappy.gif" alt="Bare-Metal FPGA Game Engine" style="object-position: top center;" onerror="this.style.display='none'" loading="lazy">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
           <div>
-            <div class="proj-idx">03</div>
-            <div class="proj-name">Flappy Bird FPGA Game Engine</div>
-            <div class="proj-desc">Engineered a deterministic game engine from scratch using Verilog HDL on an Altera DE1-SoC FPGA, bypassing the CPU to achieve microsecond-latency response times with custom VGA/PS2 drivers. The project's technical breakdown gained significant traction, garnering 405+ likes from the engineering community on LinkedIn.</div>
+            <div class="proj-idx">02</div>
+            <div class="proj-name">Bare-Metal FPGA Game Engine</div>
+            <div class="proj-desc">Architected a fully deterministic, zero-latency game engine in Verilog on an Altera DE1-SoC FPGA, operating entirely without a CPU or operating system. Engineered a multi-module FSM to handle collision detection and 640x480 VGA sprite rendering across a 50MHz clock domain, with bare-metal PS/2 drivers and custom LFSR-based RNG for the hex displays.</div>
             <div class="proj-stack">
               <span class="stack-tag">Verilog</span>
-              <span class="stack-tag">FPGA</span>
-              <span class="stack-tag">Hardware Logic</span>
+              <span class="stack-tag">Hardware Architecture</span>
+              <span class="stack-tag">ModelSim</span>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/dareen-nasreldin/VGA-Music-Sequencer" target="_blank" class="proj gsap-proj">
+        <div style="display:grid; grid-template-columns:1fr 20px; gap:16px; align-items:start;">
+          <div>
+            <div class="proj-idx">03</div>
+            <div class="proj-name">Embedded VGA Music Sequencer</div>
+            <div class="proj-desc">Programmed a real-time digital synthesizer with zero-jitter audio playback by driving an 8kHz polling loop through memory-mapped I/O. Managed multi-page sheet music state with an optimized flat C struct for O(1) array deletion, and generated interactive square-wave audio using 16-bit PCM arrays and fixed-point phase accumulators.</div>
+            <div class="proj-stack">
+              <span class="stack-tag">C</span>
+              <span class="stack-tag">Embedded Systems</span>
+              <span class="stack-tag">Real-Time Processing</span>
             </div>
           </div>
           <div class="proj-arrow">↗</div>
@@ -130,20 +128,20 @@
       
       <div class="resume-row gsap-resume-row">
         <div>
-          <div class="resume-title">Incoming Software Engineering Intern</div>
-          <div class="resume-company">Exiger</div>
-          <div class="resume-note">Incoming intern joining the engineering team to contribute to AI-powered supply chain and risk management platforms, leveraging my background in B2B integrations and API architecture.</div>
+          <div class="resume-title">Software Engineering Intern</div>
+          <div class="resume-company">Exiger (Product Engineering)</div>
+          <div class="resume-note">Cut manual end-to-end QA testing from a 2-3 hour process down to a ~4 minute automated run by writing a targeted smoke test suite in Grafana k6 and JavaScript, and built an internal Claude Skill that auto-generates test scenarios, now adopted by the QA team. Also dropped local development login times from 40 seconds to under 2 seconds with a custom Okta authentication bypass in Java and Groovy, while maintaining legacy system stability through active code reviews and Agile sprint planning.</div>
         </div>
-        <div class="resume-date">Summer 2026</div>
+        <div class="resume-date">Jun 2026 — Present</div>
       </div>
 
       <div class="resume-row gsap-resume-row">
         <div>
           <div class="resume-title">Software Subsystem Member</div>
-          <div class="resume-company">NeurotechUofT</div>
-          <div class="resume-note">Engineered real-time signal processing pipelines and trained machine learning models in Python to analyze noisy sEMG/EEG biosignals. Focused on highly accurate tremor detection to drive an assistive exoskeleton designed to actively stabilize arm movements, prioritizing low-latency data processing and system reliability.</div>
+          <div class="resume-company">NeurotechUofT (Design Team)</div>
+          <div class="resume-note">Added subject-level cross-validation to track model instability, leading to a PyTorch autoencoder architecture fix that dropped run-to-run variance by 9x. Built a configurable PyTorch data pipeline to standardize experiment logging across 6+ clinical datasets, and investigated a cross-validation outlier via statistical feature analysis to improve the model's real-world accuracy.</div>
         </div>
-        <div class="resume-date">Sep 2024 — Present</div>
+        <div class="resume-date">Sep 2025 — Present</div>
       </div>
 
       <div class="resume-row gsap-resume-row">
@@ -161,11 +159,11 @@
       <div class="resume-block-head gsap-fade-up">Education</div>
       <div class="resume-row gsap-resume-row">
         <div>
-          <div class="resume-title">BASc Computer Engineering</div>
+          <div class="resume-title">BASc Computer Engineering (PEY Co-op)</div>
           <div class="resume-company">University of Toronto</div>
           <div class="resume-note">Minor in Artificial Intelligence. Certificates in Cybersecurity and Engineering Business. Awarded $40,000 Engineering Merit Scholarship.</div>
         </div>
-        <div class="resume-date">Expected 2028</div>
+        <div class="resume-date">Expected 2029</div>
       </div>
     </div>
 
