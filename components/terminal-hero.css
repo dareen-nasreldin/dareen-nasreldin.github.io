@@ -1,46 +1,39 @@
 /* --- Terminal Hero: mock PowerShell window --- */
 
 .term-window {
+  position: relative;
   font-family: var(--fm);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.03);
+  width: 360px;
+  display: flex;
+  flex-direction: column;
 }
 
-.term-window--full {
-  max-width: 640px;
-}
-
-.term-window--compact {
-  max-width: 360px;
+.term-window--expanded {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 6px 14px rgba(0, 0, 0, 0.06);
 }
 
 .term-titlebar {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-}
-
-.term-window--compact .term-titlebar {
-  padding: 8px 12px;
+  flex: 0 0 auto;
+  cursor: grab;
 }
 
 .term-dot {
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #c9ab7c;
   opacity: 0.8;
-}
-
-.term-window--compact .term-dot {
-  width: 9px;
-  height: 9px;
 }
 
 .term-title {
@@ -51,19 +44,18 @@
 }
 
 .term-body {
-  padding: 18px 20px 22px;
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--fg);
-  min-height: 210px;
-}
-
-.term-window--compact .term-body {
   padding: 14px 16px 16px;
   font-size: 12px;
   line-height: 1.65;
+  color: var(--fg);
+  flex: 1 1 auto;
+  min-height: 0;
   max-height: 200px;
   overflow-y: auto;
+}
+
+.term-window--expanded .term-body {
+  max-height: none;
 }
 
 .term-line {
@@ -143,4 +135,58 @@
 .term-prompt-input::placeholder {
   color: var(--fg3);
   opacity: 0.6;
+}
+
+.term-resize-handle {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  opacity: 0.5;
+}
+
+.term-resize-handle:hover {
+  opacity: 0.9;
+}
+
+.term-resize-handle::before {
+  content: '';
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.term-backdrop {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(127, 119, 221, 0.10);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.term-widget {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 5;
+}
+
+.term-widget--floating {
+  position: fixed;
+  right: auto;
+  bottom: auto;
+}
+
+@media (max-width: 950px) {
+  .term-widget {
+    display: none;
+  }
 }
