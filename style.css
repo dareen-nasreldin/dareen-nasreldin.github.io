@@ -371,8 +371,22 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* --img-y sets the vertical crop focus per-image (0% = top, 50% = center,
+     100% = bottom) — set it inline via style="--img-y: 20%" instead of
+     writing out a full object-position/object-fit override each time. */
+  object-position: center var(--img-y, 50%);
   /* Scale up slightly to give parallax room to move without showing edges */
-  transform: scale(1.15); 
+  transform: scale(1.15);
+}
+
+/* Archive page cards: same --img-y knob, different fixed box size */
+.archive-card .proj-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center var(--img-y, 50%);
+  border-radius: 6px;
+  margin-bottom: 16px;
 }
 
 .proj-idx {
