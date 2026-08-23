@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync new public GitHub repos to projects.html using the first image found in each repo."""
+"""Sync new public GitHub repos into data/projects.js using the first image found in each repo."""
 import json
 import os
 import re
@@ -8,9 +8,9 @@ from pathlib import Path
 
 USERNAME = os.environ.get("GH_USERNAME", "dareen-nasreldin")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
-PROJECTS_HTML = "projects.html"
+PROJECTS_JS = Path("data/projects.js")
 IMAGES_DIR = Path("images/repos")
-SYNC_MARKER = "<!-- SYNC:END -->"
+JS_PREFIX = "window.PROJECTS = "
 IMAGE_RE = re.compile(r"\.(png|jpg|jpeg|gif|webp)$", re.IGNORECASE)
 
 # Repos to never add
@@ -63,7 +63,7 @@ def find_first_repo_image(repo_name: str) -> str | None:
 
 
 def download_image(download_url: str, repo_name: str) -> str | None:
-    """Download an image from a GitHub raw URL; returns relative path for HTML."""
+    """Download an image from a GitHub raw URL; returns relative path for the data file."""
     try:
         IMAGES_DIR.mkdir(parents=True, exist_ok=True)
         ext = download_url.rsplit(".", 1)[-1].split("?")[0].lower()
@@ -80,49 +80,47 @@ def download_image(download_url: str, repo_name: str) -> str | None:
         return None
 
 
-def make_card(repo: dict, img_path: str | None) -> str:
+def make_entry(repo: dict, img_path: str | None) -> dict:
     title = repo["name"].replace("-", " ").replace("_", " ").title()
-    url = repo["html_url"]
-    desc = (repo.get("description") or "A project on GitHub.").replace("<", "&lt;").replace(">", "&gt;")
+    desc = repo.get("description") or "A project on GitHub."
     lang = repo.get("language") or "Code"
 
-    img_block = ""
+    image = None
     if img_path:
-        img_block = (
-            f'        <img class="proj-img" src="{img_path}" alt="{title} preview"'
-            f' onerror="this.style.display=\'none\'" loading="lazy"'
-            f' style="width:100%;height:160px;object-fit:cover;object-position:top;'
-            f'border-radius:6px;margin-bottom:16px;">\n'
-        )
+        image = {"src": img_path, "alt": f"{title} preview", "imgY": "0%"}
 
-    return (
-        f'\n      <a href="{url}" target="_blank" class="archive-card gsap-card">\n'
-        f"{img_block}"
-        f'        <div class="card-top">\n'
-        f'          <span class="folder-icon">\U0001f4c1</span>\n'
-        f'          <span class="github-link">↗</span>\n'
-        f"        </div>\n"
-        f'        <div class="card-title">{title}</div>\n'
-        f'        <div class="card-desc">{desc}</div>\n'
-        f'        <div class="proj-stack">\n'
-        f'          <span class="stack-tag">{lang}</span>\n'
-        f"        </div>\n"
-        f"      </a>"
-    )
+    return {
+        "url": repo["html_url"],
+        "title": title,
+        "description": desc,
+        "stack": [lang],
+        "image": image,
+    }
+
+
+def load_projects() -> list[dict]:
+    text = PROJECTS_JS.read_text(encoding="utf-8")
+    if not text.startswith(JS_PREFIX):
+        raise SystemExit(f"ERROR: {PROJECTS_JS} does not start with '{JS_PREFIX}'.")
+    json_str = text[len(JS_PREFIX):].rstrip().rstrip(";")
+    return json.loads(json_str)
+
+
+def save_projects(projects: list[dict]) -> None:
+    body = json.dumps(projects, indent=2, ensure_ascii=False)
+    PROJECTS_JS.write_text(JS_PREFIX + body + ";\n", encoding="utf-8")
 
 
 def main() -> None:
-    with open(PROJECTS_HTML, encoding="utf-8") as f:
-        html = f.read()
-
-    if SYNC_MARKER not in html:
-        print(f"ERROR: '{SYNC_MARKER}' not found in {PROJECTS_HTML}.")
+    if not PROJECTS_JS.exists():
+        print(f"ERROR: {PROJECTS_JS} not found.")
         raise SystemExit(1)
 
-    existing_urls = set(re.findall(r'href="(https://github\.com/[^"]+)"', html))
+    projects = load_projects()
+    existing_urls = {p["url"] for p in projects}
 
     repos = fetch_repos()
-    new_cards: list[str] = []
+    new_entries: list[dict] = []
 
     for repo in repos:
         if repo["fork"] or repo["archived"] or repo["private"]:
@@ -137,19 +135,14 @@ def main() -> None:
         img_path = download_image(img_url, repo["name"]) if img_url else None
         if not img_url:
             print(f"  No image found in {repo['name']}")
-        new_cards.append(make_card(repo, img_path))
+        new_entries.append(make_entry(repo, img_path))
 
-    if not new_cards:
+    if not new_entries:
         print("No new repos to add.")
         return
 
-    insertion = "\n".join(new_cards) + "\n\n      " + SYNC_MARKER
-    html = html.replace(SYNC_MARKER, insertion, 1)
-
-    with open(PROJECTS_HTML, "w", encoding="utf-8") as f:
-        f.write(html)
-
-    print(f"Done — added {len(new_cards)} repo(s) to {PROJECTS_HTML}.")
+    save_projects(projects + new_entries)
+    print(f"Done — added {len(new_entries)} repo(s) to {PROJECTS_JS}.")
 
 
 if __name__ == "__main__":
