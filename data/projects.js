@@ -2,9 +2,9 @@ window.PROJECTS = [
   {
     "url": "https://github.com/dareen-nasreldin/GIS-Routing-Engine",
     "title": "Scalable GIS Routing Engine",
-    "description": "Built a high-performance geographic mapping application in C++, using parallel threads to route data across 100,000+ intersection nodes. Dropped pathfinding execution times to sub-second latency by replacing Dijkstra's with the A* algorithm, and updated the EZGL front-end with dynamic sidebar controls for real-time route instructions.",
+    "description": "Built 'Essential Services GIS,' a crisis-first mapping tool for transit-dependent pedestrians that prioritizes hospitals, shelters, and food banks over the driver-centric assumptions of standard map apps. A one-tap Hospitals toggle floods the map with 1,500+ matched facilities in under a second, backed by an A* + min-heap pathfinding engine benchmarked up to 2.1x faster than Dijkstra across Toronto's 120,000+ intersections. Also engineered a parallelized courier-routing solver (8 threads, 6.8x speedup) that beat the course's TA benchmark by 5.93% on a 100+-stop logistics problem.",
     "stack": ["C++", "Parallel Systems", "Data Processing"],
-    "image": null
+    "image": { "src": "images/gis.png", "alt": "Scalable GIS Routing Engine preview", "imgY": "50%" }
   },
   {
     "url": "https://github.com/dareen-nasreldin/flappy-FPGA-verilog",
