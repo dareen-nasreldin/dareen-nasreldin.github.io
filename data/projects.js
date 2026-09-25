@@ -169,5 +169,27 @@ window.PROJECTS = [
       "TypeScript"
     ],
     "image": null
+  },
+  {
+    "url": "https://github.com/dareen-nasreldin/minicc",
+    "title": "Minicc",
+    "description": "A C-subset optimizing compiler for RISC-V that optimizes for code size, because instruction memory is what binds on an FPGA soft core.",
+    "stack": [
+      "CMake"
+    ],
+    "image": null
+  },
+  {
+    "url": "https://github.com/dareen-nasreldin/flappy-FPGA-bitstream",
+    "title": "Flappy Fpga Bitstream",
+    "description": "A hardware-based implementation of a \"Flappy Bird\" style obstacle game, written in Verilog for Altera/Intel DE-Series FPGA boards. This project utilizes a custom VGA controller for graphics, PS/2 keyboard for input, and 7-segment displays for score tracking.",
+    "stack": [
+      "Code"
+    ],
+    "image": {
+      "src": "images/repos/flappy-FPGA-bitstream.gif",
+      "alt": "Flappy Fpga Bitstream preview",
+      "imgY": "0%"
+    }
   }
 ];
